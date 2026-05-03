@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: staging
+# Add specific staging environment configurations here

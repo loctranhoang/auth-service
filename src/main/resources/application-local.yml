@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: local
+# Add specific local environment configurations here

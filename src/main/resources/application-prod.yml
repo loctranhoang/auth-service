@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: prod
+# Add specific prod environment configurations here

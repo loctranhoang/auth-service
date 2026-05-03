@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: dev
+# Add specific dev environment configurations here
