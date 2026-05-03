@@ -1,5 +1,6 @@
-spring:
-  profiles:
-    active: dev
+server:
+  port: 8080
 
-# Add other general application properties here
+spring:
+  application:
+    name: auth-service
