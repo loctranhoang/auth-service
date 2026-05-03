@@ -1,0 +1,14 @@
+# Development environment configuration
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/devdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: devuser
+    password: devpass
+  profiles:
+    active: dev
+logging:
+  level:
+    root: INFO
