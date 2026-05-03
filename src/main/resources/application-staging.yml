@@ -1,0 +1,14 @@
+# Staging environment configuration
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/stagingdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: stageuser
+    password: stagepass
+  profiles:
+    active: staging
+logging:
+  level:
+    root: WARN
