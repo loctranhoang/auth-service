@@ -1,6 +1,44 @@
-# Application properties
-server:
-  port: 8080
-spring:
+"spring:
   profiles:
     active: local
+
+---
+
+# Local profile configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:localdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+
+---
+
+# Dev profile configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:devdb
+    driver-class-name: org.h2.Driver
+    username: devuser
+    password: devpass
+
+---
+
+# Staging profile configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:stagingdb
+    driver-class-name: org.h2.Driver
+    username: staginguser
+    password: stagingpass
+
+---
+
+# Prod profile configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:proddb
+    driver-class-name: org.h2.Driver
+    username: produser
+    password: prodpass
+"
