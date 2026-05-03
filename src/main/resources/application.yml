@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: default
+
+# Add additional configurations as needed
