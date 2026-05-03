@@ -1,11 +1,42 @@
 spring:
-  profiles:
-    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_service
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
-# Local profile
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework: INFO
+
+profiles:
+  active: dev
+
+# Development environment settings
 ---
-# Dev profile
+# dev specific configurations
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_service_dev
+
+# Staging environment settings
 ---
-# Staging profile
+# staging specific configurations
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_service_staging
+
+# Production environment settings
 ---
-# Prod profile
+# prod specific configurations
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_service_prod
+    username: prod_user
+    password: prod_password
