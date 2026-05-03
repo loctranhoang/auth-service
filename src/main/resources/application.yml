@@ -1,59 +1,7 @@
+server:
+  port: 8080
 spring:
+  application:
+    name: auth-service
   profiles:
-    active: dev
-
----
-
-# Local profile
-spring:
-  profiles: local
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
-  logging:
-    level:
-      org.springframework: DEBUG
-
----
-
-# Development profile
-spring:
-  profiles: dev
-  datasource:
-    url: jdbc:mysql://localhost:3306/auth_service_dev
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: dev_user
-    password: dev_password
-  logging:
-    level:
-      org.springframework: INFO
-
----
-
-# Staging profile
-spring:
-  profiles: staging
-  datasource:
-    url: jdbc:mysql://staging.database.server:3306/auth_service_staging
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: staging_user
-    password: staging_password
-  logging:
-    level:
-      org.springframework: WARN
-
----
-
-# Production profile
-spring:
-  profiles: prod
-  datasource:
-    url: jdbc:mysql://prod.database.server:3306/auth_service_prod
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: prod_user
-    password: prod_password
-  logging:
-    level:
-      org.springframework: ERROR
+    active: local
