@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://dev-db-server:3306/auth_db
+    username: dev_user
+    password: dev_password
+  logging:
+    level:
+      root: INFO
+  security:
+    jwt:
+      secret: devSecretKey
+      expiration: 3600
+      issuer: auth-service-dev
+  external:
+    paymentGatewayUrl: https://dev.paymentgateway.com/payments

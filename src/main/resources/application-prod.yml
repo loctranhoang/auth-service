@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://prod-db-server:3306/auth_db
+    username: prod_user
+    password: prod_password
+  logging:
+    level:
+      root: ERROR
+  security:
+    jwt:
+      secret: prodSecretKey
+      expiration: 3600
+      issuer: auth-service-prod
+  external:
+    paymentGatewayUrl: https://paymentgateway.com/payments

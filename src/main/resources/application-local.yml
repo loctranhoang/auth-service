@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: root
+    password: password
+  logging:
+    level:
+      root: DEBUG
+  security:
+    jwt:
+      secret: mySecretKey
+      expiration: 3600
+      issuer: auth-service
+  external:
+    paymentGatewayUrl: http://localhost:8080/payments
