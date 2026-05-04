@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://staging-db:3306/auth_db
+    username: staging_user
+    password: staging_pass
+  logging:
+    level:
+      root: WARN
+      com.az.auth: WARN
+  server:
+    port: 8082

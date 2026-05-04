@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: local_user
+    password: local_pass
+  logging:
+    level:
+      root: DEBUG
+      com.az.auth: DEBUG
+  server:
+    port: 8080
