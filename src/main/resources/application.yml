@@ -1,0 +1,31 @@
+# Local environment configuration
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+
+# Development environment configuration
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+
+# Staging environment configuration
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: staging
+
+# Production environment configuration
+server:
+  port: 8083
+
+spring:
+  profiles:
+    active: prod
