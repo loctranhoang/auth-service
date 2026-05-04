@@ -8,5 +8,6 @@ class AuthServiceApplicationTests {
 
     @Test
     void contextLoads() {
+        // This test verifies that the application context loads without errors
     }
 }
