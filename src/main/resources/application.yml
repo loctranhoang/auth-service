@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: local
+
+# Environment-specific configurations can be overridden in separate files.
