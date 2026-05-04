@@ -12,3 +12,11 @@ spring:
 logging:
   level:
     root: DEBUG
+
+# Additional properties for local environment
+custom:
+  api:
+    key: local-api-key
+  feature:
+    flag: true
+

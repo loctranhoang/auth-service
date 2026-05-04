@@ -9,3 +9,11 @@ spring:
 logging:
   level:
     root: INFO
+
+# Additional properties for development environment
+custom:
+  api:
+    key: dev-api-key
+  feature:
+    flag: true
+

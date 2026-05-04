@@ -9,3 +9,11 @@ spring:
 logging:
   level:
     root: WARN
+
+# Additional properties for staging environment
+custom:
+  api:
+    key: staging-api-key
+  feature:
+    flag: true
+

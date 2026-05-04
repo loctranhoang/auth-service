@@ -9,3 +9,11 @@ spring:
 logging:
   level:
     root: ERROR
+
+# Additional properties for production environment
+custom:
+  api:
+    key: prod-api-key
+  feature:
+    flag: false
+
