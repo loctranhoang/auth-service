@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/stagingdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: staginguser
+    password: stagingpass
+  logging:
+    level:
+      root: WARN

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/devdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: devuser
+    password: devpass
+  logging:
+    level:
+      root: INFO
