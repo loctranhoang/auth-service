@@ -16,4 +16,3 @@ custom:
     key: staging-api-key
   feature:
     flag: true
-
