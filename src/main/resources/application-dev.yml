@@ -16,4 +16,3 @@ custom:
     key: dev-api-key
   feature:
     flag: true
-

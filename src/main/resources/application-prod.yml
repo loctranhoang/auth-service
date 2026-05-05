@@ -16,4 +16,3 @@ custom:
     key: prod-api-key
   feature:
     flag: false
-
