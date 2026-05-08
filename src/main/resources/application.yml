@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: auth-service
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+# Local environment properties
+debug: true
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+# Development environment properties
+debug: false
+server:
+  port: 8082
+
+---
+spring:
+  config:
+    activate:
+      on-profile: staging
+# Staging environment properties
+debug: false
+server:
+  port: 8083
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+# Production environment properties
+debug: false
+server:
+  port: 8080
