@@ -2,6 +2,16 @@ spring:
   application:
     name: auth-service
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  info:
+    title: Auth Service API
+    version: 1.0.0
+    description: OpenAPI documentation for the Auth Service
+
 ---
 spring:
   config:
