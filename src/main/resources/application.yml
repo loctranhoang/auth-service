@@ -41,3 +41,13 @@ spring:
 debug: false
 server:
   port: 8080
+
+---
+# Swagger/OpenAPI configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+  api-docs:
+    path: /v3/api-docs
