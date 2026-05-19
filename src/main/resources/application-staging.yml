@@ -1,0 +1,22 @@
+# Staging environment configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://staging-db-host:5432/authdb
+    username: staginguser
+    password: stagingpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+server:
+  port: 8083
+logging:
+  level:
+    root: INFO
+    org.springframework: WARN
+feature:
+  enable-some-dev-only-feature: false

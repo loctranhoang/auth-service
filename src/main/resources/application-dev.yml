@@ -1,0 +1,22 @@
+# Development environment configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://dev-db-host:5432/authdb
+    username: devuser
+    password: devpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8082
+logging:
+  level:
+    root: DEBUG
+    org.springframework: INFO
+feature:
+  enable-some-dev-only-feature: true

@@ -8,6 +8,6 @@ class AuthServiceApplicationTests {
 
     @Test
     void contextLoads() {
-        // If context fails to load, this test will fail.
+        // Verifies that the Spring Boot application context loads successfully
     }
 }
