@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://staging-db-server:5432/auth_staging
+    username: staging_user
+    password: staging_pass
+    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: staging
+server:
+  port: 8082
+logging:
+  level:
+    root: WARN
+    org.springframework: INFO
+security:
+  basic:
+    enabled: false
+application:
+  name: auth-service-staging
+  apiBaseUrl: https://staging.api.example.com/auth

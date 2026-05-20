@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_local
+    username: local_user
+    password: local_pass
+    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: local
+server:
+  port: 8080
+logging:
+  level:
+    root: DEBUG
+    org.springframework: INFO
+security:
+  basic:
+    enabled: true
+application:
+  name: auth-service-local
+  apiBaseUrl: http://localhost:8080/api

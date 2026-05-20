@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://prod-db-server:5432/auth_prod
+    username: prod_user
+    password: prod_pass
+    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: prod
+server:
+  port: 8083
+logging:
+  level:
+    root: ERROR
+    org.springframework: WARN
+security:
+  basic:
+    enabled: false
+application:
+  name: auth-service-prod
+  apiBaseUrl: https://api.example.com/auth
