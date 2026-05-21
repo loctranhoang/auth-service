@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://prod-db:5432/auth_prod
+    driver-class-name: org.postgresql.Driver
+    username: produser
+    password: prodpass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8083
+logging:
+  level:
+    root: ERROR
