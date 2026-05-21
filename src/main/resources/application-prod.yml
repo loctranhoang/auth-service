@@ -1,0 +1,24 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://prod-db-host:5432/auth_service_prod
+    username: auth_prod_user
+    password: ${DB_PASSWORD:prod_password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8083
+logging:
+  level:
+    root: WARN
+    com.az.auth: INFO
+jwt:
+  secret: ${JWT_SECRET:prod_secret_key}
+  expirationMs: 3600000
+# Add additional production environment configurations as needed
