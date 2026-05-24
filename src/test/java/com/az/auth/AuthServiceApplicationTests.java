@@ -8,6 +8,6 @@ class AuthServiceApplicationTests {
 
     @Test
     void contextLoads() {
-        // Context load test, will fail if the application context cannot start
+        // Test will pass if the application context loads successfully
     }
 }
