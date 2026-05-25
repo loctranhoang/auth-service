@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:postgresql://prod-db:5432/authdb_prod
+    driver-class-name: org.postgresql.Driver
+    username: prod_user
+    password: prod_pass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8083
+logging:
+  level:
+    root: ERROR
+    com.az.auth: WARN

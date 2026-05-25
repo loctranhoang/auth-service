@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: staging
+  datasource:
+    url: jdbc:postgresql://staging-db:5432/authdb_staging
+    driver-class-name: org.postgresql.Driver
+    username: staging_user
+    password: staging_pass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8082
+logging:
+  level:
+    root: WARN
+    com.az.auth: INFO
