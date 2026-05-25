@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dev-db-server:5432/auth_db
+    driver-class-name: org.postgresql.Driver
+    username: dev_user
+    password: dev_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
