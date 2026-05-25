@@ -1,0 +1,23 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://dev-db-server:5432/auth_dev
+    username: dev_user
+    password: dev_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8081
+auth:
+  jwt:
+    secret: dev-secret-key
+    expiration: 86400
+logging:
+  level:
+    root: INFO
