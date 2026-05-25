@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://staging-db-server:5432/auth_db
+    driver-class-name: org.postgresql.Driver
+    username: staging_user
+    password: staging_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+server:
+  port: 8082
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
