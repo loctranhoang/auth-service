@@ -1,0 +1,17 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://prod-db.example.com:5432/auth_db_prod
+    driver-class-name: org.postgresql.Driver
+    username: prod_user
+    password: prod_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+server:
+  port: 8083
+auth:
+  jwt:
+    secret: prod-secret-key
+    expiration: 3600
