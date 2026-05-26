@@ -1,0 +1,21 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://prod-db.example.com:5432/auth_prod
+    driver-class-name: org.postgresql.Driver
+    username: produser
+    password: prodpassword
+    hikari:
+      maximum-pool-size: 20
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+server:
+  port: 8080
+logging:
+  level:
+    root: ERROR
