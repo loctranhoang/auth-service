@@ -1,0 +1,17 @@
+spring:
+  profiles: staging
+  datasource:
+    url: jdbc:postgresql://staging-db.example.com:5432/auth_db_staging
+    driver-class-name: org.postgresql.Driver
+    username: staging_user
+    password: staging_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+server:
+  port: 8082
+auth:
+  jwt:
+    secret: staging-secret-key
+    expiration: 3600
