@@ -1,0 +1,17 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://prod-db-host:5432/auth_prod_db
+    driver-class-name: org.postgresql.Driver
+    username: prod_user
+    password: prod_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+logging:
+  level:
+    root: WARN
+    org.springframework.web: WARN
+server:
+  port: 8080
