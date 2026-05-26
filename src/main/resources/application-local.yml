@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_db_local
+    username: local_user
+    password: local_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  profiles:
+    active: local
+---
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG
+---
+server:
+  port: 8080
