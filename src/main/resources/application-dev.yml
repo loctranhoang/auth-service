@@ -1,0 +1,19 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb_dev
+    username: dev_user
+    password: dev_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  server:
+    port: 8081
+logging:
+  level:
+    org.springframework: INFO
+    com.az.auth: DEBUG
+---
+# Add environment-specific values and secrets only for development
