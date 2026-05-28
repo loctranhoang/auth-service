@@ -1,0 +1,12 @@
+target/
+.git
+.gitignore
+*.iml
+.idea/
+*.log
+*.md
+*.swp
+.DS_Store
+*.yml
+*.yaml
+*.properties
