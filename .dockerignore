@@ -1,0 +1,21 @@
+# Ignore Maven build output
+/target
+
+# Ignore version control
+.git
+
+# Ignore IDE/project files
+*.iml
+.idea
+*.classpath
+*.project
+*.settings
+
+# Maven wrapper and settings
+.mvn
+mvnw
+mvnw.cmd
+
+# Logs and temp files
+*.log
+*.tmp
