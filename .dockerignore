@@ -1,5 +1,6 @@
-# Ignore Maven build output
-/target
+# Ignore Maven build output except the packaged jar used by Dockerfile
+/target/*
+!/target/auth-service.jar
 
 # Ignore version control
 .git

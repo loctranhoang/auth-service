@@ -1,5 +1,7 @@
 spring:
-  profiles: local
+  config:
+    activate:
+      on-profile: local
   datasource:
     url: jdbc:h2:mem:authdb;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
@@ -9,8 +11,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  server:
-    port: 8080
+server:
+  port: 8080
 logging:
   level:
     org.springframework: DEBUG
