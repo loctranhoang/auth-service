@@ -11,6 +11,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
 server:
   port: 8081
 logging:
