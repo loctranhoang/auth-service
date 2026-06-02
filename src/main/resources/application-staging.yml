@@ -1,5 +1,7 @@
 spring:
-  profiles: staging
+  config:
+    activate:
+      on-profile: staging
   datasource:
     url: jdbc:postgresql://staging-db-server:5432/authdb_staging
     username: staging_user
@@ -9,8 +11,8 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: false
-  server:
-    port: 8082
+server:
+  port: 8082
 logging:
   level:
     org.springframework: WARN

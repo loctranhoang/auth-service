@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+      - "feature/**"
+  pull_request:
+    branches:
+      - dev
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  maven-build:
+    name: Maven build and tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Run Maven tests
+        run: mvn -B test
+
+      - name: Package application
+        run: mvn -B -DskipTests package
+
+      - name: Upload application jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: auth-service-jar
+          path: target/auth-service.jar
+          if-no-files-found: error
+
+  docker-build:
+    name: Docker image build
+    runs-on: ubuntu-latest
+    needs: maven-build
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Package application
+        run: mvn -B -DskipTests package
+
+      - name: Build Docker image
+        run: docker build --build-arg JAR_FILE=target/auth-service.jar -t auth-service:${{ github.sha }} .

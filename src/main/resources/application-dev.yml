@@ -1,7 +1,9 @@
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/authdb_dev
+    url: jdbc:postgresql://dev-db.example.com:5432/authdb_dev
     username: dev_user
     password: dev_password
     driver-class-name: org.postgresql.Driver
@@ -9,11 +11,20 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  server:
-    port: 8081
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+server:
+  port: 8081
 logging:
   level:
     org.springframework: INFO
     com.az.auth: DEBUG
+feature-flags:
+  enable-experimental-auth-flow: true
+external-services:
+  user-service-url: https://dev-users.example.com
+  mail-service-url: https://dev-mail.example.com
 ---
-# Add environment-specific values and secrets only for development
+# Development profile configuration
+# Note: Do not include secrets or production endpoints here.
