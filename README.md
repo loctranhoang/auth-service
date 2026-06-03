@@ -1,11 +1,12 @@
 # Auth Service
 
-This project implements an authentication service using Java and Spring Boot.
+This project implements a robust authentication service using Java and Spring Boot.
 
 ## Features
 - Secure authentication endpoints for user login and registration
 - Token-based authentication (JWT)
-- User role and permission handling
+- User role and permission management
+- Easy integration with other systems
 - Extensible architecture for adding new authentication providers
 
 ## Getting Started
@@ -48,14 +49,14 @@ This project implements an authentication service using Java and Spring Boot.
 ## Configuration
 
 Default configuration is managed via `src/main/resources/application.yml`.
-Override settings using environment variables or profile-specific YAML files (e.g., `application-prod.yml`).
+Override settings using environment variables or profile-specific YAML files (for example, `application-prod.yml`).
 
 ### Environment Variables
-- `SPRING_PROFILES_ACTIVE` — Set the Spring profile (e.g., `dev`, `prod`)
-- `JWT_SECRET` — Secret key for signing JWT tokens
+- `SPRING_PROFILES_ACTIVE` — Set the Spring profile (`dev`, `prod`, etc.)
+- `JWT_SECRET` — Secret key for signing JWT tokens (must be set in production)
 - `PORT` — Port to run the service (default: 8080)
 
-These variables can be set directly or via Docker environment flags:
+Set variables in your shell or via Docker flags, for example:
 ```bash
 docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=prod -e JWT_SECRET=mysecret auth-service
 ```
@@ -90,18 +91,20 @@ mvn test
 ## Troubleshooting
 
 - **Port already in use:**
-  Ensure nothing else is running on the configured port (default 8080) or set a different port using the `PORT` environment variable.
+  Make sure nothing else is listening on the configured port (default 8080), or specify a different port using the `PORT` environment variable.
 - **JWT authentication errors:**
-  Confirm `JWT_SECRET` matches between the service and any clients generating tokens.
+  Ensure the `JWT_SECRET` value matches between auth-service and clients generating tokens.
 - **Profile-specific issues:**
-  Check that the correct profile is active (`SPRING_PROFILES_ACTIVE`) and appropriate configuration files are present.
+  Confirm the proper profile is active (`SPRING_PROFILES_ACTIVE`) and the relevant configuration files exist in `src/main/resources`.
 
 ## Contributing
 
 We welcome contributions! To propose changes:
 - Fork this repository
 - Create a feature branch
-- Submit pull requests describing your changes
+- Submit a pull request describing your changes
+
+Follow standard Java/Spring Boot development guidelines. Please include appropriate tests and documentation for your changes.
 
 ## License
 
