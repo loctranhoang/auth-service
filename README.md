@@ -50,6 +50,16 @@ This project implements an authentication service using Java and Spring Boot.
 Default configuration is managed via `src/main/resources/application.yml`.
 Override settings using environment variables or profile-specific YAML files (e.g., `application-prod.yml`).
 
+### Environment Variables
+- `SPRING_PROFILES_ACTIVE` — Set the Spring profile (e.g., `dev`, `prod`)
+- `JWT_SECRET` — Secret key for signing JWT tokens
+- `PORT` — Port to run the service (default: 8080)
+
+These variables can be set directly or via Docker environment flags:
+```bash
+docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=prod -e JWT_SECRET=mysecret auth-service
+```
+
 ## Example Usage
 
 - **Register a new user:**
@@ -76,6 +86,15 @@ Run all tests:
 ```bash
 mvn test
 ```
+
+## Troubleshooting
+
+- **Port already in use:**
+  Ensure nothing else is running on the configured port (default 8080) or set a different port using the `PORT` environment variable.
+- **JWT authentication errors:**
+  Confirm `JWT_SECRET` matches between the service and any clients generating tokens.
+- **Profile-specific issues:**
+  Check that the correct profile is active (`SPRING_PROFILES_ACTIVE`) and appropriate configuration files are present.
 
 ## Contributing
 
