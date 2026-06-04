@@ -61,13 +61,13 @@ A robust authentication and authorization service built with Java and Spring Boo
     docker run -p 8080:8080 auth-service
     ```
 
-  - You can inject environment variables as needed (see below)
+    - You can inject environment variables as needed (see below).
 
 ## Configuration
 
-- **Default config:** `src/main/resources/application.yml`
-- **Profile-specific config:** Create `application-<profile>.yml` in `src/main/resources`
-- **Override settings:** Environment variables or system properties
+- **Default configuration:** `src/main/resources/application.yml`
+- **Profile-specific configuration:** Create `application-<profile>.yml` in `src/main/resources`
+- **Override settings:** Use environment variables or system properties
 
 ### Common Environment Variables
 
@@ -75,7 +75,7 @@ A robust authentication and authorization service built with Java and Spring Boo
 - `JWT_SECRET` — Secret key for signing JWTs (required in production)
 - `PORT` — Service port (default: 8080)
 
-Example Docker run with env vars:
+**Example Docker run with environment variables:**
 
 ```bash
 docker run -p 8080:8080 \
@@ -86,7 +86,7 @@ docker run -p 8080:8080 \
 
 ## REST API Usage Examples
 
-#### Register a new user
+### Register a new user
 
 ```http
 POST /api/auth/register
@@ -98,7 +98,7 @@ Content-Type: application/json
 }
 ```
 
-#### Login and receive JWT
+### Login and receive JWT
 
 ```http
 POST /api/auth/login
@@ -112,17 +112,16 @@ Content-Type: application/json
 
 - **Success:** Returns a JWT token for authenticated requests.
 
-#### Authenticated endpoint example
+### Authenticated endpoint example
 
 ```http
 GET /api/user/me
 Authorization: Bearer <JWT_TOKEN>
 ```
 
-
 ## Running Tests
 
-Execute unit and integration tests:
+Run unit and integration tests:
 
 ```bash
 mvn test
@@ -130,9 +129,9 @@ mvn test
 
 ## Troubleshooting
 
-- **Port already in use:** Change with the `PORT` environment variable.
-- **JWT errors:** Make sure `JWT_SECRET` matches between the auth service and any clients.
-- **Profile/config problems:** Confirm `SPRING_PROFILES_ACTIVE` is correct and profile config files exist.
+- **Port already in use:** Change it with the `PORT` environment variable.
+- **JWT errors:** Ensure `JWT_SECRET` is identical between the auth service and clients.
+- **Profile/config problems:** Confirm `SPRING_PROFILES_ACTIVE` is set correctly and profile config files exist.
 
 ## Contributing
 
