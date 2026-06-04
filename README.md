@@ -1,58 +1,82 @@
 # Auth Service
 
-A robust authentication service built with Java and Spring Boot. This project delivers secure endpoints for user authentication, registration, and authorization, using JWT (JSON Web Token) for token-based security and extensible role/permission management.
+A robust authentication and authorization service built with Java and Spring Boot. Auth Service manages secure user authentication, registration, and role-based authorization for modern applications. It uses JWT (JSON Web Token) for stateless, token-based security, and supports extensible provider and environment-based configuration.
 
 ## Features
-- Secure user login and registration endpoints
-- JWT token-based authentication and authorization
+
+- Secure user registration and login endpoints
+- JWT-based authentication and authorization
 - Role- and permission-based access control
-- Easy integration with other systems and microservices
-- Extensible architecture for adding authentication providers
-- Environment-based configuration support
+- Easily integrates with microservices and other systems
+- Extensible architecture for adding additional authentication providers
+- Environment-based configuration via profiles
+
+## Compatibility
+
+- **Java Version:** 17 or higher
+- **Spring Boot:** 3.x compatible
 
 ## Getting Started
 
 ### Prerequisites
-- Java 17 or higher
-- Maven 3.6 or newer
+
+- Java 17+
+- Maven 3.6+
+- Docker (optional, for containerized deployment)
 
 ### Installation and Setup
+
 1. **Clone the repository:**
+
     ```bash
     git clone <repository-url>
     cd auth-service
     ```
+
 2. **Build the project:**
+
     ```bash
     mvn clean package
     ```
+
 3. **Run the service:**
+
     ```bash
     mvn spring-boot:run
-    # Or
+    # or
     java -jar target/auth-service-*.jar
     ```
 
 ### Running with Docker
+
 1. **Build the Docker image:**
+
     ```bash
     docker build -t auth-service .
     ```
+
 2. **Run the Docker container:**
+
     ```bash
     docker run -p 8080:8080 auth-service
     ```
 
+  - You can inject environment variables as needed (see below)
+
 ## Configuration
-- Default settings: `src/main/resources/application.yml`
-- Override with environment variables or `application-<profile>.yml`
+
+- **Default config:** `src/main/resources/application.yml`
+- **Profile-specific config:** Create `application-<profile>.yml` in `src/main/resources`
+- **Override settings:** Environment variables or system properties
 
 ### Common Environment Variables
-- `SPRING_PROFILES_ACTIVE` — Set active profile (e.g., `dev`, `prod`)
-- `JWT_SECRET` — Secret key for JWT signing (required in production)
+
+- `SPRING_PROFILES_ACTIVE` — Spring Boot profile (e.g. `dev`, `prod`)
+- `JWT_SECRET` — Secret key for signing JWTs (required in production)
 - `PORT` — Service port (default: 8080)
 
-Example with Docker environment variables:
+Example Docker run with env vars:
+
 ```bash
 docker run -p 8080:8080 \
   -e SPRING_PROFILES_ACTIVE=prod \
@@ -60,48 +84,72 @@ docker run -p 8080:8080 \
   auth-service
 ```
 
-## Example API Usage
+## REST API Usage Examples
 
-- **Register a new user:**
-    ```http
-    POST /api/auth/register
-    Content-Type: application/json
-    {
-      "username": "alice",
-      "password": "strong-password"
-    }
-    ```
-- **User Login:**
-    ```http
-    POST /api/auth/login
-    Content-Type: application/json
-    {
-      "username": "alice",
-      "password": "strong-password"
-    }
-    ```
-    - **Response:** JWT token included in the response for authenticated requests.
+#### Register a new user
+
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "password": "strong-password"
+}
+```
+
+#### Login and receive JWT
+
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "password": "strong-password"
+}
+```
+
+- **Success:** Returns a JWT token for authenticated requests.
+
+#### Authenticated endpoint example
+
+```http
+GET /api/user/me
+Authorization: Bearer <JWT_TOKEN>
+```
+
 
 ## Running Tests
 
-Run all tests:
+Execute unit and integration tests:
+
 ```bash
 mvn test
 ```
 
 ## Troubleshooting
-- **Port in use:** Change the port via the `PORT` environment variable if 8080 is unavailable.
-- **JWT errors:** Ensure `JWT_SECRET` matches between auth-service and clients.
-- **Profile errors:** Confirm `SPRING_PROFILES_ACTIVE` is correctly set and configuration files exist.
+
+- **Port already in use:** Change with the `PORT` environment variable.
+- **JWT errors:** Make sure `JWT_SECRET` matches between the auth service and any clients.
+- **Profile/config problems:** Confirm `SPRING_PROFILES_ACTIVE` is correct and profile config files exist.
 
 ## Contributing
 
-Contributions are welcome! To propose changes:
-- Fork the repo and create a feature branch
+We welcome contributions! To get started:
+
+- Fork the repository and create a feature branch
 - Follow Java/Spring Boot best practices
-- Add tests and documentation
-- Submit a pull request describing your changes
+- Add appropriate tests and documentation
+- Open a pull request with a clear description of your changes
+
+For significant design changes, please open an issue for discussion first.
 
 ## License
 
-Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+Auth Service is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+## Further Resources
+
+- [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [JWT Introduction](https://jwt.io/introduction/)
