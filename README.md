@@ -24,29 +24,29 @@ Auth Service provides robust authentication, authorization, and user management 
 - Maven 3.8+
 
 ### Clone the Repository
-```
+```sh
 git clone https://github.com/<your-org>/auth-service.git
 cd auth-service
 ```
 
 ### Build the Project
-```
+```sh
 mvn clean package
 ```
 
 ## Configuration
 Configuration is managed using Spring Boot's YAML files located in `src/main/resources/`:
 - `application.yml`: Base/default settings
-- `application-local.yml`, `application-dev.yml`, `application-prod.yml`: Override for specific environments
+- `application-local.yml`, `application-dev.yml`, `application-prod.yml`: Overrides for specific environments
 
 To activate a profile, pass the profile name when starting:
-```
+```sh
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 # or with the jar
 java -jar target/auth-service-*.jar --spring.profiles.active=prod
 ```
 
-Update database, security, and third-party settings in the respective YAML file according to your environment. Refer to code and comments in the YAML files for details on configurable properties.
+Update database, security, and third-party settings in the respective YAML file according to your environment. See the YAML files' comments for details on configurable properties.
 
 ## Usage
 
@@ -55,33 +55,40 @@ The main RESTful API endpoints include:
 - `POST /api/auth/login` — Login and receive a JWT for secured endpoints
 - `GET /api/users/me` — Retrieve authenticated user's info (JWT in Authorization header required)
 
-API requests must use the `Authorization: Bearer <jwt>` header for protected endpoints.
+For protected endpoints, provide the `Authorization: Bearer <jwt>` header.
 
-> For full API documentation, consult Swagger/OpenAPI at `/swagger-ui.html` or `/v3/api-docs` (if enabled), or refer to the codebase for endpoint specifics.
+API documentation—if enabled—is available via:
+- `/swagger-ui.html`
+- `/v3/api-docs`
+
+See the codebase for up-to-date endpoint specifics.
 
 ## Running Tests
-Execute all tests with:
-```
+Run all tests using:
+```sh
 mvn test
 ```
-By default, tests use Embedded H2 or profile-specific test configurations; override via `-Dspring.profiles.active=test` as needed.
+By default, tests use an embedded H2 database or profile-specific test configs. Override the active profile as needed:
+```sh
+mvn test -Dspring.profiles.active=test
+```
 
 ## Contributing
-Contributions are appreciated! Please:
+Contributions are welcome! Please follow these steps:
 1. Fork and clone the repository
 2. Create a feature branch: `git checkout -b feature/your-idea`
 3. Commit your changes: `git commit -am 'Describe feature'`
 4. Push your branch: `git push origin feature/your-idea`
 5. Open a Pull Request for review
 
-Before submitting, ensure all tests pass and code adheres to the existing style/conventions.
+Before submitting, make sure all tests pass and your code matches the project's style.
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Changelog & Updates
-- **2026-06-04**: Updated documentation for configuration, testing, and usage.
-- View Git history or releases for previous changes and version notes.
+- **2026-06-04**: Documentation updated for installation, configuration, usage, and testing.
+- See Git history or Releases for additional details and change history.
 
 ## Contact
-For support or questions, please open an issue in this repository or contact a maintainer. Contributions, issues, and queries are always welcome.
+To report issues or ask questions, please open a GitHub issue or contact a project maintainer. We welcome contributions, bug reports, and suggestions.
