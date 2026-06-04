@@ -1,69 +1,85 @@
 # Auth Service
 
-This project is an authentication service built with Java and Spring Boot. It provides basic authentication and authorization functionalities typically required in modern microservice architectures.
+The **Auth Service** is a secure authentication and authorization microservice built with Java 17+ and Spring Boot. It provides endpoints and core logic for verifying user credentials, generating and validating JWT tokens, and enforcing role-based access control. This service is suitable for modern, containerized microservice architectures.
 
 ## Features
-- User authentication
-- JWT token generation and validation
+- Secure user authentication
+- JWT token issuance and validation
 - Role-based access control
+- Configurable via environment profiles
+- RESTful APIs for common auth flows
 
 ## Requirements
-- Java 17 or later
+- Java 17 or higher
 - Maven 3.8+
 
 ## Project Structure
-- **src/main/java/com/az/auth**: Main source code for the Spring Boot application
-- **src/test/java/com/az/auth**: Unit and integration tests
+- **src/main/java/com/az/auth/**: Application source
+- **src/test/java/com/az/auth/**: Tests (unit, integration)
 
 ## Getting Started
 
 1. **Clone the repository:**
-   ```sh
-   git clone <repository-url>
-   cd auth-service
-   ```
+    ```sh
+    git clone <repository-url>
+    cd auth-service
+    ```
 2. **Build the project:**
-   ```sh
-   mvn clean install
-   ```
+    ```sh
+    mvn clean install
+    ```
 3. **Run the application:**
-   ```sh
-   mvn spring-boot:run
-   ```
+    ```sh
+    mvn spring-boot:run
+    ```
 4. **Access the API:**
-   The service runs on [http://localhost:8080](http://localhost:8080) by default.
-   
+    The service runs at [http://localhost:8080](http://localhost:8080) by default.
+
 ## Configuration
-Application configurations can be set via `src/main/resources/application.yml` or by specifying profile-based files such as `application-dev.yml`.
+Configuration defaults are in `src/main/resources/application.yml`. Environment/profile-specific overrides can be placed in files like `application-dev.yml`.
+
+Common configuration properties include:
+- JWT secret, expiration, and header
+- Server port and context path
+- Datasource settings if using persistent storage
+
+You may set Java system properties or environment variables as needed.
 
 ## Usage Example
-To authenticate a user, send a POST request to `/auth/login` with user credentials. You will receive a JWT token on success.
+To authenticate a user, send a POST request with username and password to the login endpoint:
 
-```json
+**Request:**
+```
+POST /auth/login
+Content-Type: application/json
 {
   "username": "user",
   "password": "password"
 }
 ```
 
-Example cURL:
+**Example using cURL:**
 ```sh
 curl -X POST http://localhost:8080/auth/login \
   -H 'Content-Type: application/json' \
   -d '{"username": "user", "password": "password"}'
 ```
 
-The token can be used for subsequent authenticated requests:
+**Response:**
+- On success: A JWT token is returned in the response body.
+
+To access a protected endpoint, provide the token:
 ```sh
 curl -H "Authorization: Bearer <token>" http://localhost:8080/protected-endpoint
 ```
 
 ## Development
-- Make sure to follow the existing [code style](#) and contribution guidelines.
-- Run tests using:
-   ```sh
-   mvn test
-   ```
+- Follow the project's code style and contribution guidelines.
+- Run tests with:
+    ```sh
+    mvn test
+    ```
+- Pull requests and issue reports are welcome.
 
 ## Version
 - Current version: 1.0.0
