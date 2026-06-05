@@ -10,14 +10,20 @@ on:
     branches:
       - dev
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  maven-build:
-    name: Maven build and tests
+  build-test-package:
+    name: Build, test, and package
     runs-on: ubuntu-latest
+
+    outputs:
+      artifact_id: ${{ steps.maven-metadata.outputs.artifact_id }}
+      version: ${{ steps.maven-metadata.outputs.version }}
+      jar_path: ${{ steps.maven-metadata.outputs.jar_path }}
 
     steps:
       - name: Check out repository
@@ -29,6 +35,18 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
+
+      - name: Read Maven project metadata
+        id: maven-metadata
+        shell: bash
+        run: |
+          artifact_id="$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)"
+          version="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+          final_name="$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)"
+
+          echo "artifact_id=${artifact_id}" >> "$GITHUB_OUTPUT"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "jar_path=target/${final_name}.jar" >> "$GITHUB_OUTPUT"
 
       - name: Run Maven tests
         run: mvn -B test
@@ -39,28 +57,24 @@ jobs:
       - name: Upload application jar
         uses: actions/upload-artifact@v4
         with:
-          name: auth-service-jar
-          path: target/auth-service.jar
+          name: ${{ steps.maven-metadata.outputs.artifact_id }}-${{ steps.maven-metadata.outputs.version }}
+          path: ${{ steps.maven-metadata.outputs.jar_path }}
           if-no-files-found: error
 
   docker-build:
-    name: Docker image build
+    name: Docker image build validation
     runs-on: ubuntu-latest
-    needs: maven-build
+    needs: build-test-package
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - name: Download application jar
+        uses: actions/download-artifact@v4
         with:
-          distribution: temurin
-          java-version: "21"
-          cache: maven
+          name: ${{ needs.build-test-package.outputs.artifact_id }}-${{ needs.build-test-package.outputs.version }}
+          path: target
 
-      - name: Package application
-        run: mvn -B -DskipTests package
-
-      - name: Build Docker image
-        run: docker build --build-arg JAR_FILE=target/auth-service.jar -t auth-service:${{ github.sha }} .
+      - name: Validate Docker image build
+        run: docker build --build-arg JAR_FILE=${{ needs.build-test-package.outputs.jar_path }} -t ${{ needs.build-test-package.outputs.artifact_id }}:${{ github.sha }} .
