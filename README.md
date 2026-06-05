@@ -2,14 +2,21 @@
 
 ## Project Overview
 
-auth-service is a Spring Boot application that provides authentication and authorization services for the broader platform. It manages user sign-up, login, token-based authentication, and role/permission management.
+auth-service is a Spring Boot application that provides robust authentication and authorization services within a microservices ecosystem. The service manages features such as user registration, login, JWT-based authentication, and flexible role/permission management.
+
+## Features
+- **User Registration & Login**: Secure endpoints for user sign-up and authentication
+- **Token-Based Authentication**: Supports JWT tokens for stateless session management
+- **Role and Permission Management**: Assign roles or permissions to users, enforce access control
+- **Extensible Configuration**: Easily adapt environment-specific settings using Spring profiles
+- **API-First Approach**: Exposes RESTful endpoints designed for easy integration
 
 ## Setup Instructions
 
 ### Prerequisites
-- **Java 17** or above is required. (Check your version using `java -version`)
-- **Maven 3.8+** is recommended. (Check with `mvn -version`)
-- (Optional) **Docker** if you want to run the service in a containerized environment.
+- **Java 17** or above (`java -version`)
+- **Maven 3.8+** (`mvn -version`)
+- (Optional) **Docker** for containerized deployments
 
 ### Clone the Repository
 ```
@@ -19,66 +26,111 @@ cd auth-service
 
 ## Configuration
 
-The main configuration file is at `src/main/resources/application.yml`. For different environments, you may use:
-- `application-dev.yml`: Development settings
-- `application-staging.yml`: Staging settings
+Primary configuration files reside in `src/main/resources/`:
+- `application.yml`: Shared configuration
+- `application-dev.yml`: Development-specific overrides
+- `application-staging.yml`: Staging environment
 - `application-prod.yml`: Production settings
 
-You can specify the active profile by setting the `SPRING_PROFILES_ACTIVE` environment variable. For example:
+Set the active profile via `SPRING_PROFILES_ACTIVE`:
 ```
 export SPRING_PROFILES_ACTIVE=dev
 ```
 
-Adjust database connection, JWT secret, and other sensitive values as appropriate for your environment. Never commit secrets to version control.
+**Sensitive Data:** Set database URLs, credentials, and JWT secrets by environment variables or an external secrets manager. **Never commit secrets to Git.**
+
+#### Example: Override JWT secret from the shell
+```
+export JWT_SECRET=yourproductionsecret
+```
 
 ## Running the Project
 
-To run the application locally using Maven:
+To start locally with Maven:
 ```
 mvn spring-boot:run
 ```
-Or to build a JAR and run:
+
+Or to build and run as a JAR:
 ```
 mvn clean package
 java -jar target/auth-service-*.jar
 ```
 
 ### Running with Docker
-If a Dockerfile is provided, build and run with:
+Ensure a valid `Dockerfile` is present. Then:
 ```
 docker build -t auth-service .
 docker run -e SPRING_PROFILES_ACTIVE=dev -p 8080:8080 auth-service
 ```
 
+## Usage Examples
+
+### Basic User Registration (Example Request)
+```
+POST /api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "securePassword123",
+  "email": "john.doe@example.com"
+}
+```
+
+### Authenticate & Obtain JWT
+```
+POST /api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "securePassword123"
+}
+```
+_A successful login returns an `accessToken` in the response._
+
+### Secured Endpoint Access
+```
+GET /api/v1/user/me
+Authorization: Bearer <accessToken>
+```
+
+For full API details, refer to the [OpenAPI documentation](/docs) if available or inspect `src/main/java/com/az/auth/controller/` for endpoint definitions.
+
 ## Testing
 
-To run all tests:
+Run unit and integration tests:
 ```
 mvn test
 ```
-
-- **Unit tests** are located in `src/test/java/com/az/auth/`.
-- **Integration tests** may require databases or external services—check `application-test.yml` if present for test-specific configuration.
+- **Unit Tests**: Found in `src/test/java/com/az/auth/`
+- **Integration Tests**: May use a test database or containerized dependencies—see `application-test.yml` for possible overrides
 
 ## Contribution Guidelines
 
 We welcome contributions! To propose changes:
-- Fork the repository
-- Create a feature branch (`git checkout -b feature/your-feature`)
-- Make your changes
-- Commit with descriptive messages
-- Open a Pull Request describing your changes
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Implement your changes
+4. Commit with clear, descriptive messages
+5. Open a Pull Request
 
-Before submitting, please ensure:
-- All tests pass (`mvn test`)
-- New features/changes are documented in the README if applicable
+Before submitting:
+- Ensure all tests pass (`mvn test`)
+- Update the README if necessary for new features or significant changes
+
+## Documentation & Resources
+- Issues and feature requests: [GitHub Issues](../../issues)
+- Basic usage and design docs may be found in the `/docs` directory if present
+- Please consult the `CONTRIBUTING.md` or reach out to maintainers for review processes and governance if not apparent
 
 ## Contact Information
 
-For questions or support, please reach out via:
-- Project Issues: [GitHub Issues](../../issues)
-- Email: support@example.com (replace with maintainer's email)
+For support or questions:
+- **GitHub Issues:** [Project Issues](../../issues)
+- **Email:** support@example.com (replace with actual maintainer email)
 
 ---
 
-*Please review and follow all repository contribution and security best practices. For approval processes, refer to the CONTRIBUTING or GOVERNANCE documentation if available or consult the repository maintainers.*
+*Please follow project and security best practices at all times. For code of conduct, governance, or escalation, consult the repository maintainers or included documentation.*
