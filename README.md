@@ -7,6 +7,7 @@ A Spring Boot-based authentication microservice responsible for handling user au
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Configuration](#configuration)
 - [Building and Running](#building-and-running)
 - [Contributing](#contributing)
 - [Resources](#resources)
@@ -65,6 +66,23 @@ Content-Type: application/json
 ```
 
 For implementation details, see: `src/main/java/com/az/auth`.
+
+## Configuration
+
+The service uses Spring Boot's [application.yml](src/main/resources/application.yml) (and optionally profile-specific configuration files such as `application-dev.yml`) for all customizable settings. You can override configuration properties using environment variables or via the command line:
+
+- **Port Configuration:**
+  ```sh
+  java -jar target/auth-service-*.jar --server.port=9090
+  ```
+- **Profiles:**
+  ```sh
+  java -jar target/auth-service-*.jar --spring.profiles.active=dev
+  ```
+- **JWT Settings and User Management:**
+  Update relevant sections in `application.yml` to configure JWT secrets, token expiration, user data sources, and more.
+
+Refer to the in-file comments in each configuration file for explanations and options.
 
 ## Building and Running
 
