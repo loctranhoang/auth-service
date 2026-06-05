@@ -1,57 +1,53 @@
 # Auth Service
 
-A Spring Boot-based authentication microservice responsible for handling user authentication, authorization, and token issuance in your microservices architecture.
+A Spring Boot-based authentication microservice responsible for handling user authentication, authorization, and token issuance within a microservices architecture.
 
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Building and Running](#building-and-running)
 - [Contributing](#contributing)
+- [Resources](#resources)
 - [License](#license)
 
 ## Overview
 
-The **Auth Service** provides secure user authentication workflows that can be used by other services. It’s designed to be extensible, robust, and production-ready, leveraging Java and Spring Boot for rapid development and scalability.
+The **Auth Service** provides secure user authentication and authorization workflows that can be easily integrated by other services. It is designed for extensibility, robustness, and production-readiness, leveraging Java and Spring Boot for rapid development and scalability.
 
 ## Features
 - RESTful authentication API endpoints
-- Token issuance and validation (JWT support)
-- Password hashing and user verification
-- Extendable for role-based access control (RBAC)
-- Easy integration with other microservices
+- Token issuance and validation (supports JWT)
+- Secure password hashing and user verification
+- Extensible for role-based access control (RBAC)
+- Ready for seamless integration with other microservices
 
 ## Installation
 
-1. **Clone the Repository:**
+To set up the service locally:
+
+1. **Clone the repository**
    ```sh
    git clone https://github.com/your-org/auth-service.git
    cd auth-service
    ```
 
-2. **Build the Project:**
-   ```sh
-   ./mvnw clean install
-   ```
-   Or with Maven installed globally:
-   ```sh
-   mvn clean install
-   ```
-
-3. **Run the Application:**
-   ```sh
-   ./mvnw spring-boot:run
-   ```
-   Or:
-   ```sh
-   java -jar target/auth-service-*.jar
-   ```
+2. **Build the project**
+   - With Maven Wrapper:
+     ```sh
+     ./mvnw clean install
+     ```
+   - Or with Maven installed globally:
+     ```sh
+     mvn clean install
+     ```
 
 ## Usage
 
-By default, the service starts on port `8080`. API documentation and endpoints are defined under `/api/auth` (see your `src/main/java/com/az/auth` for implementation details).
+By default, the service starts on port `8080`. API endpoints are available under `/api/auth`.
 
-Example authentication request:
+**Example authentication request:**
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -61,21 +57,42 @@ Content-Type: application/json
 }
 ```
 
-Response:
+**Example response:**
 ```json
 {
   "token": "<JWT_TOKEN_STRING>"
 }
 ```
 
+For implementation details, see: `src/main/java/com/az/auth`.
+
+## Building and Running
+
+- **Start the application** using Maven Wrapper:
+  ```sh
+  ./mvnw spring-boot:run
+  ```
+  Or by running the built JAR:
+  ```sh
+  java -jar target/auth-service-*.jar
+  ```
+
+- **Profiles:** The service can be configured with different Spring Boot profiles using the `--spring.profiles.active` flag.
+
 ## Contributing
 
 1. Fork this repository and create a feature branch.
-2. Ensure your changes include tests as appropriate.
-3. Submit a pull request with a clear explanation of your changes.
+2. Write clear, tested code and update/add documentation where necessary.
+3. Open a pull request describing your changes.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for full contributor guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor guidelines.
+
+## Resources
+
+- [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [Issue Tracker](https://github.com/your-org/auth-service/issues)
+- [API Docs](/docs) (if enabled)
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
