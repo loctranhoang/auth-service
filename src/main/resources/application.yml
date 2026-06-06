@@ -1,0 +1,7 @@
+# Shared Spring Boot default configurationspring:
+  profiles:
+    active: default
+  application:
+    name: auth-service
+
+# Add common configuration properties here
