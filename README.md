@@ -9,6 +9,7 @@ A Spring Boot-based authentication microservice responsible for handling user au
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Building and Running](#building-and-running)
+- [Testing](#testing)
 - [Contributing](#contributing)
 - [Resources](#resources)
 - [License](#license)
@@ -69,7 +70,7 @@ For implementation details, see: `src/main/java/com/az/auth`.
 
 ## Configuration
 
-The service uses Spring Boot's [application.yml](src/main/resources/application.yml) (and optionally profile-specific configuration files such as `application-dev.yml`) for all customizable settings. You can override configuration properties using environment variables or via the command line:
+The service uses Spring Boot's [application.yml](src/main/resources/application.yml) (and optionally profile-specific configuration files such as `application-dev.yml`) for customizable settings. You can override configuration properties using environment variables or via the command line:
 
 - **Port Configuration:**
   ```sh
@@ -96,6 +97,20 @@ Refer to the in-file comments in each configuration file for explanations and op
   ```
 
 - **Profiles:** The service can be configured with different Spring Boot profiles using the `--spring.profiles.active` flag.
+
+## Testing
+
+To run the tests and verify the service functionality:
+
+```sh
+./mvnw test
+```
+Or with Maven:
+```sh
+mvn test
+```
+
+Unit and integration tests are located in `src/test/java/com/az/auth`.
 
 ## Contributing
 
