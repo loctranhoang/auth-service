@@ -1,0 +1,13 @@
+# Shared Spring Boot defaults
+spring:
+  application:
+    name: auth-service
+  profiles:
+    active: default
+server:
+  port: 8080
+
+# Place common/shared configuration here, to be overridden by profile-specific files.
+logging:
+  level:
+    root: INFO
