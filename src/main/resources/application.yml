@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:defaultdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  main:
+    allow-bean-definition-overriding: false
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+---
+# This file contains shared defaults. Override per environment in profile files:
+# application-local.yml, application-dev.yml, application-staging.yml, application-prod.yml
