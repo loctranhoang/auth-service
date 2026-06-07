@@ -1,0 +1,14 @@
+# Shared Spring Boot defaults (all environments)
+spring:
+  application:
+    name: auth-service
+  profiles:
+    active: local
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
