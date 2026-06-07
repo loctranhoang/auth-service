@@ -1,0 +1,26 @@
+# Spring Boot test profile configuration
+test:
+  enabled: true
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:authdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  main:
+    allow-bean-definition-overriding: true
+server:
+  port: 0
+  servlet:
+    context-path: /test
+logging:
+  level:
+    root: WARN
