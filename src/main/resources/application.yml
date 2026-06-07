@@ -1,0 +1,11 @@
+# Shared default configuration for all environments
+data:
+  # Place shared data source configurations here if needed
+
+spring:
+  application:
+    name: auth-service
+  # Add additional shared Spring Boot properties as needed
+
+# For environment-specific overrides, create profile-specific files:
+# application-local.yml, application-dev.yml, application-staging.yml, application-prod.yml
