@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  labels:
+    app.kubernetes.io/name: auth-service
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: auth-service
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: auth-service
+        app.kubernetes.io/component: api
+        app.kubernetes.io/part-of: auth
+    spec:
+      containers:
+        - name: auth-service
+          image: ghcr.io/loctranhoang/auth-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: default
+            - name: AUTH_DB_URL
+              value: jdbc:postgresql://auth-postgres:5432/authdb
+            - name: AUTH_DB_USERNAME
+              value: auth_user
+            - name: AUTH_DB_PASSWORD
+              value: auth_password
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
