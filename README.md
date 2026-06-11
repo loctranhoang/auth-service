@@ -74,6 +74,21 @@ Run all tests using Maven:
 mvn test
 ```
 
+## Kubernetes Deployment
+
+Production Kubernetes manifests are in `k8s/production` and can be applied with:
+
+```sh
+kubectl apply -k k8s/production
+```
+
+Before deploying, create these production-only Kubernetes secrets in the `auth-service` namespace:
+
+- `auth-service-db` with `url`, `username`, and `password` keys.
+- `ghcr-pull-secret` for pulling the private GHCR image, if the image is not public.
+
+The production GitHub Actions deployment workflow expects `PROD_KUBE_CONFIG` to contain a base64-encoded kubeconfig. It applies the manifests, updates the `auth-service` deployment image to the image built for the current workflow run, and waits for the rollout to complete.
+
 ## Configuration
 
 All environment and profile-specific configuration files are located under `src/main/resources` (e.g., `application.yml`).

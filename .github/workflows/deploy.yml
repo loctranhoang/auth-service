@@ -19,6 +19,7 @@ on:
       - "Dockerfile"
       - "pom.xml"
       - "src/**"
+      - "k8s/**"
       - ".github/workflows/deploy.yml"
 
 permissions:
@@ -126,7 +127,7 @@ jobs:
             migrate
 
   deploy-production:
-    name: Deploy production image
+    name: Deploy production image to Kubernetes
     runs-on: ubuntu-latest
     needs:
       - build-and-publish
@@ -135,45 +136,29 @@ jobs:
     environment: production
 
     steps:
-      - name: Configure SSH
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure kubeconfig
         env:
-          PROD_SSH_PRIVATE_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
+          PROD_KUBE_CONFIG: ${{ secrets.PROD_KUBE_CONFIG }}
         shell: bash
         run: |
           set -euo pipefail
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$PROD_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "$PROD_SSH_HOST" >> ~/.ssh/known_hosts
+          install -m 700 -d ~/.kube
+          printf '%s' "$PROD_KUBE_CONFIG" | base64 --decode > ~/.kube/config
+          chmod 600 ~/.kube/config
 
-      - name: Deploy container
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Deploy Kubernetes resources
         env:
           IMAGE_REF: ${{ needs.build-and-publish.outputs.image_ref }}
-          PROD_SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
-          PROD_GHCR_USER: ${{ secrets.PROD_GHCR_USER }}
-          PROD_GHCR_TOKEN: ${{ secrets.PROD_GHCR_TOKEN }}
-          PROD_CONTAINER_NAME: ${{ vars.PROD_CONTAINER_NAME || 'auth-service' }}
-          PROD_PORT: ${{ vars.PROD_PORT || '8080' }}
+          KUBE_NAMESPACE: auth-service
         shell: bash
         run: |
           set -euo pipefail
-          ssh "$PROD_SSH_USER@$PROD_SSH_HOST" \
-            "IMAGE_REF='$IMAGE_REF' \
-             PROD_GHCR_USER='$PROD_GHCR_USER' \
-             PROD_GHCR_TOKEN='$PROD_GHCR_TOKEN' \
-             PROD_CONTAINER_NAME='$PROD_CONTAINER_NAME' \
-             PROD_PORT='$PROD_PORT' \
-             bash -s" <<'REMOTE'
-          set -euo pipefail
-          echo "$PROD_GHCR_TOKEN" | docker login ghcr.io -u "$PROD_GHCR_USER" --password-stdin
-          docker pull "$IMAGE_REF"
-          docker rm -f "$PROD_CONTAINER_NAME" 2>/dev/null || true
-          docker run -d \
-            --name "$PROD_CONTAINER_NAME" \
-            --restart unless-stopped \
-            -e SPRING_PROFILES_ACTIVE=prod \
-            -p "$PROD_PORT:8080" \
-            "$IMAGE_REF"
-          REMOTE
+          kubectl apply -k k8s/production
+          kubectl -n "$KUBE_NAMESPACE" set image deployment/auth-service auth-service="$IMAGE_REF"
+          kubectl -n "$KUBE_NAMESPACE" rollout status deployment/auth-service --timeout=180s
