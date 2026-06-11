@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: ${AUTH_TEST_DB_URL:jdbc:postgresql://localhost:5432/authdb_test}
+    driver-class-name: org.postgresql.Driver
+    username: ${AUTH_TEST_DB_USERNAME:auth_test_user}
+    password: ${AUTH_TEST_DB_PASSWORD:auth_test_password}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        boot:
+          allow_jdbc_metadata_access: false
+logging:
+  level:
+    root: WARN
+server:
+  port: 0
