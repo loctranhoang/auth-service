@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-service
+  labels:
+    app.kubernetes.io/name: auth-service
+    app.kubernetes.io/part-of: auth
+    app.kubernetes.io/component: api
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - auth-service.example.com
+      secretName: auth-service-tls
+  rules:
+    - host: auth-service.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 8080

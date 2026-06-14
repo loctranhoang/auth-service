@@ -79,6 +79,14 @@ mvn test
 All environment and profile-specific configuration files are located under `src/main/resources` (e.g., `application.yml`).
 You can override configuration by creating profile-specific files (e.g., `application-dev.yml`).
 
+## Kubernetes Ingress
+
+The Kubernetes Ingress manifest is located at `src/main/kubernetes/ingress-auth-service.yaml`.
+It routes `auth-service.example.com` to the `auth-service` backend on port `8080`.
+
+Before applying the Ingress manifest, create a TLS secret named `auth-service-tls` in the target namespace.
+The certificate in that secret must cover the configured Ingress host.
+
 ## Contribution Guidelines
 
 We welcome contributions! Please open issues or pull requests as needed. See `CONTRIBUTING.md` if available, or contact the maintainers for guidance.
