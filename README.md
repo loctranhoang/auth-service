@@ -79,6 +79,25 @@ mvn test
 All environment and profile-specific configuration files are located under `src/main/resources` (e.g., `application.yml`).
 You can override configuration by creating profile-specific files (e.g., `application-dev.yml`).
 
+## Kubernetes GHCR Image Pulls
+
+The Kubernetes service account in `k8s/service-account.yaml` references the `ghcr-auth-service-pull` image pull secret. Create the secret in the `auth-service` namespace before deploying manifests that pull `ghcr.io/loctranhoang/auth-service`.
+
+Use a GitHub token with `read:packages` permission, and do not commit the token or generated secret data:
+
+```sh
+kubectl create secret docker-registry ghcr-auth-service-pull \
+  --namespace auth-service \
+  --docker-server=ghcr.io \
+  --docker-username=<github-username> \
+  --docker-password=<github-token> \
+  --docker-email=<email-address> \
+  --dry-run=client \
+  -o yaml | kubectl apply -f -
+```
+
+The committed `k8s/image-pull-secret.yaml` file is a credentials-free template for manifest validation only. Replace it at deploy time with a real cluster secret created by the command above or by your external secret-management process.
+
 ## Contribution Guidelines
 
 We welcome contributions! Please open issues or pull requests as needed. See `CONTRIBUTING.md` if available, or contact the maintainers for guidance.
