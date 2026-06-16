@@ -5,16 +5,19 @@ on:
     branches:
       - dev
       - main
+      - "release/**"
       - "feature/**"
   pull_request:
     branches:
       - dev
       - main
+      - "release/**"
       - "feature/**"
   workflow_dispatch:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   maven-build:
@@ -46,7 +49,7 @@ jobs:
           if-no-files-found: error
 
   docker-build:
-    name: Docker image build
+    name: Docker image build and publish
     runs-on: ubuntu-latest
     needs: maven-build
 
@@ -64,5 +67,59 @@ jobs:
       - name: Package application
         run: mvn -B -DskipTests package
 
-      - name: Build Docker image
-        run: docker build --build-arg JAR_FILE=target/auth-service.jar -t auth-service:${{ github.sha }} .
+      - name: Read Maven project metadata
+        id: maven-project
+        shell: bash
+        run: |
+          artifact_id="$(mvn -q -DforceStdout help:evaluate -Dexpression=project.artifactId)"
+          version="$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)"
+
+          {
+            echo "artifact_id=${artifact_id}"
+            echo "version=${version}"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Prepare Docker image metadata
+        id: docker-meta
+        shell: bash
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          artifact_id="${{ steps.maven-project.outputs.artifact_id }}"
+          image_name="ghcr.io/${owner}/${artifact_id,,}"
+          branch_name="${GITHUB_REF_NAME}"
+          branch_tag="$(echo "${branch_name}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9_.-]+/-/g; s/^-+//; s/-+$//')"
+
+          {
+            echo "image=${image_name}"
+            echo "tags<<EOF"
+            echo "${image_name}:sha-${GITHUB_SHA}"
+            echo "${image_name}:${branch_tag}"
+            if [[ "${branch_name}" == "main" ]]; then
+              echo "${image_name}:latest"
+            fi
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          build-args: |
+            JAR_FILE=target/auth-service.jar
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ steps.maven-project.outputs.version }}
+          push: ${{ github.event_name == 'push' }}
+          tags: ${{ steps.docker-meta.outputs.tags }}
