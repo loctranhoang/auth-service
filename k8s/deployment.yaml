@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service
+  namespace: auth-service
   labels:
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/part-of: auth
@@ -20,6 +21,7 @@ spec:
         app.kubernetes.io/component: api
         app.kubernetes.io/environment: non-production
     spec:
+      serviceAccountName: auth-service
       containers:
         - name: auth-service
           image: ghcr.io/loctranhoang/auth-service:latest
