@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/component: api
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: auth-service
@@ -29,6 +30,7 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: default
