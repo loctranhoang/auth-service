@@ -7,11 +7,6 @@ on:
         description: Image tag to deploy. Defaults to the current commit SHA.
         required: false
         type: string
-      run_migrations:
-        description: Run Flyway migrations before deployment.
-        required: true
-        default: true
-        type: boolean
   push:
     branches:
       - main
@@ -20,6 +15,7 @@ on:
       - "pom.xml"
       - "src/**"
       - ".github/workflows/deploy.yml"
+      - "k8s/**"
 
 permissions:
   contents: read
@@ -91,89 +87,47 @@ jobs:
             ${{ steps.image.outputs.image_ref }}
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
 
-  migrate-production:
-    name: Run production migrations
+  deploy-kubernetes:
+    name: Deploy to Kubernetes
     runs-on: ubuntu-latest
     needs: build-and-publish
     environment: production
-    if: ${{ github.event_name == 'push' || github.event.inputs.run_migrations == 'true' }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Run Flyway migrations
+      - name: Configure kubectl
         env:
-          FLYWAY_URL: ${{ secrets.PROD_FLYWAY_URL }}
-          FLYWAY_USER: ${{ secrets.PROD_FLYWAY_USER }}
-          FLYWAY_PASSWORD: ${{ secrets.PROD_FLYWAY_PASSWORD }}
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         shell: bash
         run: |
           set -euo pipefail
-          migration_dir="src/main/resources/db/migration"
+          install -m 700 -d ~/.kube
+          printf '%s\n' "$KUBE_CONFIG" > ~/.kube/config
+          chmod 600 ~/.kube/config
 
-          if [ ! -d "$migration_dir" ]; then
-            echo "No Flyway migration directory found at $migration_dir; skipping migration."
-            exit 0
-          fi
-
-          docker run --rm \
-            -v "$PWD/$migration_dir:/flyway/sql:ro" \
-            flyway/flyway:10 \
-            -url="$FLYWAY_URL" \
-            -user="$FLYWAY_USER" \
-            -password="$FLYWAY_PASSWORD" \
-            migrate
-
-  deploy-production:
-    name: Deploy production image
-    runs-on: ubuntu-latest
-    needs:
-      - build-and-publish
-      - migrate-production
-    if: ${{ always() && needs.build-and-publish.result == 'success' && (needs.migrate-production.result == 'success' || needs.migrate-production.result == 'skipped') }}
-    environment: production
-
-    steps:
-      - name: Configure SSH
-        env:
-          PROD_SSH_PRIVATE_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
+      - name: Apply Kubernetes manifests
         shell: bash
         run: |
           set -euo pipefail
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$PROD_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "$PROD_SSH_HOST" >> ~/.ssh/known_hosts
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/service-account.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
 
-      - name: Deploy container
-        env:
-          IMAGE_REF: ${{ needs.build-and-publish.outputs.image_ref }}
-          PROD_SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
-          PROD_GHCR_USER: ${{ secrets.PROD_GHCR_USER }}
-          PROD_GHCR_TOKEN: ${{ secrets.PROD_GHCR_TOKEN }}
-          PROD_CONTAINER_NAME: ${{ vars.PROD_CONTAINER_NAME || 'auth-service' }}
-          PROD_PORT: ${{ vars.PROD_PORT || '8080' }}
+      - name: Update deployment image
         shell: bash
         run: |
           set -euo pipefail
-          ssh "$PROD_SSH_USER@$PROD_SSH_HOST" \
-            "IMAGE_REF='$IMAGE_REF' \
-             PROD_GHCR_USER='$PROD_GHCR_USER' \
-             PROD_GHCR_TOKEN='$PROD_GHCR_TOKEN' \
-             PROD_CONTAINER_NAME='$PROD_CONTAINER_NAME' \
-             PROD_PORT='$PROD_PORT' \
-             bash -s" <<'REMOTE'
+          kubectl set image deployment/auth-service \
+            auth-service=${{ needs.build-and-publish.outputs.image_ref }} \
+            -n auth-service
+
+      - name: Verify rollout
+        shell: bash
+        run: |
           set -euo pipefail
-          echo "$PROD_GHCR_TOKEN" | docker login ghcr.io -u "$PROD_GHCR_USER" --password-stdin
-          docker pull "$IMAGE_REF"
-          docker rm -f "$PROD_CONTAINER_NAME" 2>/dev/null || true
-          docker run -d \
-            --name "$PROD_CONTAINER_NAME" \
-            --restart unless-stopped \
-            -e SPRING_PROFILES_ACTIVE=prod \
-            -p "$PROD_PORT:8080" \
-            "$IMAGE_REF"
-          REMOTE
+          kubectl rollout status deployment/auth-service \
+            -n auth-service \
+            --timeout=5m
