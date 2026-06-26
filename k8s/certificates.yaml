@@ -1,0 +1,31 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: auth-service-selfsigned
+  namespace: auth-service
+  labels:
+    app.kubernetes.io/name: auth-service
+    app.kubernetes.io/part-of: auth
+    app.kubernetes.io/component: certificates
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: auth-service-tls
+  namespace: auth-service
+  labels:
+    app.kubernetes.io/name: auth-service
+    app.kubernetes.io/part-of: auth
+    app.kubernetes.io/component: certificates
+spec:
+  secretName: auth-service-tls
+  duration: 2160h
+  renewBefore: 360h
+  commonName: auth-service.example.com
+  dnsNames:
+    - auth-service.example.com
+  issuerRef:
+    name: auth-service-selfsigned
+    kind: Issuer
