@@ -79,6 +79,129 @@ mvn test
 All environment and profile-specific configuration files are located under `src/main/resources` (e.g., `application.yml`).
 You can override configuration by creating profile-specific files (e.g., `application-dev.yml`).
 
+## Local Kubernetes Platform
+
+The supported local Kubernetes platform for this service is a single-node kind cluster with ingress-nginx and cert-manager. The application manifests stay distribution-neutral: `k8s/deployment.yaml`, `k8s/service.yaml`, and `k8s/ingress.yaml` do not contain kind-specific objects, while `k8s/certificates.yaml` provides the local cert-manager issuer and certificate needed for TLS validation.
+
+Prerequisites:
+
+- Docker
+- kind
+- kubectl
+- Maven
+
+Create the local cluster with HTTP and HTTPS routed from the host into the kind control-plane node:
+
+```powershell
+$kindConfig = Join-Path $env:TEMP "auth-service-kind.yaml"
+
+@"
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+"@ | Set-Content -Path $kindConfig -Encoding utf8
+
+kind create cluster --name auth-service --config $kindConfig
+kubectl cluster-info --context kind-auth-service
+```
+
+Install the platform add-ons:
+
+```powershell
+$INGRESS_NGINX_VERSION = "controller-v1.15.1"
+$CERT_MANAGER_VERSION = "v1.20.2"
+
+kubectl apply -f "https://raw.githubusercontent.com/kubernetes/ingress-nginx/$INGRESS_NGINX_VERSION/deploy/static/provider/kind/deploy.yaml"
+kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=180s
+
+kubectl apply -f "https://github.com/cert-manager/cert-manager/releases/download/$CERT_MANAGER_VERSION/cert-manager.yaml"
+kubectl wait --namespace cert-manager --for=condition=Available deployment/cert-manager --timeout=180s
+kubectl wait --namespace cert-manager --for=condition=Available deployment/cert-manager-cainjector --timeout=180s
+kubectl wait --namespace cert-manager --for=condition=Available deployment/cert-manager-webhook --timeout=180s
+```
+
+Map the ingress host to the local machine. On Windows this requires an elevated shell:
+
+```powershell
+Add-Content -Path "$env:SystemRoot\System32\drivers\etc\hosts" -Value "`n127.0.0.1 auth-service.example.com"
+```
+
+Build and load a local image without changing the committed deployment manifest:
+
+```powershell
+mvn -DskipTests package
+docker build -t ghcr.io/loctranhoang/auth-service:local .
+kind load docker-image ghcr.io/loctranhoang/auth-service:local --name auth-service
+```
+
+Deploy the service resources:
+
+```powershell
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/service-account.yaml
+kubectl apply -f k8s/image-pull-secret.yaml
+kubectl apply -f k8s/certificates.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
+kubectl set image -f k8s/deployment.yaml auth-service=ghcr.io/loctranhoang/auth-service:local --local -o yaml | kubectl apply -f -
+
+kubectl -n auth-service wait certificate/auth-service-tls --for=condition=Ready --timeout=180s
+kubectl -n auth-service rollout status deployment/auth-service --timeout=180s
+kubectl -n auth-service get ingress,service,deployment,certificate
+```
+
+Verify ingress routing through TLS:
+
+```powershell
+curl.exe -k -i https://auth-service.example.com/
+```
+
+The current application has no root controller, so an HTTP response from Spring Boot, including a 404 for `/`, confirms that ingress reached the service. Connection failures, certificate secret errors, or an ingress controller default-backend response indicate a platform or routing issue.
+
+Update the local deployment by building and loading a new tag, then updating only the live Kubernetes deployment:
+
+```powershell
+mvn -DskipTests package
+docker build -t ghcr.io/loctranhoang/auth-service:local-2 .
+kind load docker-image ghcr.io/loctranhoang/auth-service:local-2 --name auth-service
+kubectl -n auth-service set image deployment/auth-service auth-service=ghcr.io/loctranhoang/auth-service:local-2
+kubectl -n auth-service rollout status deployment/auth-service --timeout=180s
+```
+
+Remove the application resources:
+
+```powershell
+kubectl delete -f k8s/ingress.yaml --ignore-not-found
+kubectl delete -f k8s/service.yaml --ignore-not-found
+kubectl delete -f k8s/deployment.yaml --ignore-not-found
+kubectl delete -f k8s/certificates.yaml --ignore-not-found
+kubectl delete -f k8s/image-pull-secret.yaml --ignore-not-found
+kubectl delete -f k8s/service-account.yaml --ignore-not-found
+kubectl delete -f k8s/namespace.yaml --ignore-not-found
+```
+
+Remove the local platform when it is no longer needed:
+
+```powershell
+kind delete cluster --name auth-service
+```
+
+For remote Kubernetes environments, keep the same application manifests and provide environment-specific infrastructure outside the base resources: an ingress controller for the `nginx` ingress class, a TLS secret named `auth-service-tls`, registry credentials for GHCR, and any DNS records required by the target cluster. Do not commit local image tags or local host mappings to the base manifests.
+
 ## Kubernetes GHCR Image Pulls
 
 The Kubernetes service account in `k8s/service-account.yaml` references the `ghcr-auth-service-pull` image pull secret. Create the secret in the `auth-service` namespace before deploying manifests that pull `ghcr.io/loctranhoang/auth-service`.
