@@ -1,0 +1,22 @@
+{
+  "@context": "https://devflow.dev/architecture/module-graph/v1",
+  "@type": "ModuleGraph",
+  "modules": [
+    {
+      "confidence": 1,
+      "directory": "com/az/auth",
+      "id": "java-package:com.az.auth",
+      "kind": "package",
+      "metadata": {
+        "modulePath": "com/az/auth"
+      },
+      "name": "auth",
+      "namespace": "com.az.auth",
+      "packageName": "com.az.auth",
+      "status": "detected"
+    }
+  ],
+  "name": "auth-service module graph",
+  "relationships": [],
+  "serviceId": "auth-service"
+}

@@ -1,0 +1,12 @@
+{
+  "@context": "https://devflow.dev/architecture/service-memory/v1",
+  "@type": "ServiceMemory",
+  "capabilities": [],
+  "dependencies": [],
+  "name": "auth-service",
+  "repository": {
+    "branch": "dev",
+    "name": "auth-service"
+  },
+  "serviceId": "auth-service"
+}

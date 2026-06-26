@@ -1,0 +1,496 @@
+{
+  "edges": [
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-182",
+      "source": "AUTH-182",
+      "target": "auth-182-initialize-auth-service-project",
+      "toId": "auth-182-initialize-auth-service-project",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-182",
+      "source": "AUTH-182",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-182-initialize-auth-service-project",
+      "label": "touches module",
+      "source": "auth-182-initialize-auth-service-project",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-190",
+      "source": "AUTH-190",
+      "target": "auth-190-local-development-environment-with-docker",
+      "toId": "auth-190-local-development-environment-with-docker",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-190",
+      "source": "AUTH-190",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-190-local-development-environment-with-docker",
+      "label": "touches module",
+      "source": "auth-190-local-development-environment-with-docker",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-233",
+      "source": "AUTH-233",
+      "target": "auth-233-dev-environment-delivery-pipeline-foundation",
+      "toId": "auth-233-dev-environment-delivery-pipeline-foundation",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-233",
+      "source": "AUTH-233",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-233-dev-environment-delivery-pipeline-foundation",
+      "label": "touches module",
+      "source": "auth-233-dev-environment-delivery-pipeline-foundation",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-238",
+      "source": "AUTH-238",
+      "target": "auth-238-github-actions-production-ci-cd-pipeline",
+      "toId": "auth-238-github-actions-production-ci-cd-pipeline",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-238",
+      "source": "AUTH-238",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-238-github-actions-production-ci-cd-pipeline",
+      "label": "touches module",
+      "source": "auth-238-github-actions-production-ci-cd-pipeline",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-247",
+      "source": "AUTH-247",
+      "target": "auth-247-add-postgresql-database-connectivity-for-testing-phase",
+      "toId": "auth-247-add-postgresql-database-connectivity-for-testing-phase",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-247",
+      "source": "AUTH-247",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-247-add-postgresql-database-connectivity-for-testing-phase",
+      "label": "touches module",
+      "source": "auth-247-add-postgresql-database-connectivity-for-testing-phase",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-251",
+      "source": "AUTH-251",
+      "target": "auth-251-deploy-auth-service-to-kubernetes",
+      "toId": "auth-251-deploy-auth-service-to-kubernetes",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-251",
+      "source": "AUTH-251",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-251-deploy-auth-service-to-kubernetes",
+      "label": "touches module",
+      "source": "auth-251-deploy-auth-service-to-kubernetes",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-252",
+      "source": "AUTH-252",
+      "target": "auth-252-add-ingress-with-tls-for-auth-service",
+      "toId": "auth-252-add-ingress-with-tls-for-auth-service",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-252",
+      "source": "AUTH-252",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-252-add-ingress-with-tls-for-auth-service",
+      "label": "touches module",
+      "source": "auth-252-add-ingress-with-tls-for-auth-service",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-261",
+      "source": "AUTH-261",
+      "target": "auth-261-publish-auth-service-docker-image-to-ghcr",
+      "toId": "auth-261-publish-auth-service-docker-image-to-ghcr",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-261",
+      "source": "AUTH-261",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-261-publish-auth-service-docker-image-to-ghcr",
+      "label": "touches module",
+      "source": "auth-261-publish-auth-service-docker-image-to-ghcr",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-262",
+      "source": "AUTH-262",
+      "target": "auth-262-add-kubernetes-namespace-and-service-account",
+      "toId": "auth-262-add-kubernetes-namespace-and-service-account",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-262",
+      "source": "AUTH-262",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-262-add-kubernetes-namespace-and-service-account",
+      "label": "touches module",
+      "source": "auth-262-add-kubernetes-namespace-and-service-account",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "AUTH-263",
+      "source": "AUTH-263",
+      "target": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
+      "toId": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
+      "type": "implements"
+    },
+    {
+      "confidence": 0.65,
+      "fromId": "AUTH-263",
+      "source": "AUTH-263",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    },
+    {
+      "confidence": 0.7,
+      "fromId": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
+      "label": "touches module",
+      "source": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
+      "target": "java-package:com.az.auth",
+      "toId": "java-package:com.az.auth",
+      "type": "modifies"
+    }
+  ],
+  "findings": [],
+  "metadata": {
+    "branch": "dev",
+    "repository": "auth-service"
+  },
+  "nodes": [
+    {
+      "description": "### Goal\n\nEnable Kubernetes to pull auth-service images from GHCR.\n\n### Context\n\nThe auth-service Docker image will be published to GHCR. Kubernetes must be configured to authenticate when pulling the image, especially if the package is private.\n\n### Scope\n\nUpdate Kubernetes manifests and documentation to support GHCR image pull authentication.\n\n### Requirements\n\nauth-service Kubernetes configuration must support an image pull secret.\n\nThe service account must reference the image pull secret.\n\nDocumentation must explain how the image pull secret should be created for GHCR.\n\nNo real credentials or tokens may be committed.\n\n### Acceptance Criteria\n\nThe service account references an image pull secret.\n\nDocumentation describes the required GHCR pull-secret setup.\n\nNo secret values are committed to the repository.\n\nKubernetes manifests remain valid for dry-run validation.\n\n### Out of Scope\n\nCreating real GitHub tokens.\n\nCommitting Kubernetes Secret credentials.\n\nChanging the CI image publishing workflow.",
+      "id": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-263"
+      },
+      "name": "Add GHCR image pull support for Kubernetes",
+      "type": "feature"
+    },
+    {
+      "description": "### Scope\n\nIngress must support TLS for auth-service.\n\n### Acceptance criteria\n\n- Create Kubernetes Ingress manifest\n- Enable TLS configuration\n- Reference auth-service backend service\n- Use host-based routing\n- Document required secret name",
+      "id": "auth-252-add-ingress-with-tls-for-auth-service",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-252"
+      },
+      "name": "Add Ingress with TLS for auth-service",
+      "type": "feature"
+    },
+    {
+      "description": "### Goal\n\nDefine the Kubernetes namespace and service account required to run auth-service.\n\n### Context\n\nauth-service needs Kubernetes deployment resources that are isolated in a dedicated namespace and can run under a dedicated service account.\n\n### Scope\n\nAdd Kubernetes manifests for auth-service namespace and service account.\n\n### Requirements\n\nKubernetes resources for auth-service must use a dedicated namespace.\n\nauth-service must run using a dedicated Kubernetes service account.\n\nThe Kubernetes manifests must be suitable for automated deployment by GitHub Actions.\n\n### Acceptance Criteria\n\nA namespace manifest exists for auth-service.\n\nA service account manifest exists for auth-service.\n\nauth-service Kubernetes resources reference the intended namespace and service account.\n\nThe manifests can be validated with Kubernetes dry-run commands.\n\n### Out of Scope\n\nDeploying the application.\n\nCreating real cluster secrets.\n\nChanging the application source code.",
+      "id": "auth-262-add-kubernetes-namespace-and-service-account",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-262"
+      },
+      "name": "Add Kubernetes namespace and service account",
+      "type": "feature"
+    },
+    {
+      "description": "## Goal\n\nEnable the auth-service testing environment to connect to a PostgreSQL database using Spring Boot, Hibernate, and JPA.\n\nThe implementation should provide the required dependencies, application configuration, and testing configuration necessary to establish database connectivity during testing and validation phases.\n\nThe outcome should allow DevFlow integration validation and future persistence-related features to execute against a PostgreSQL database.\n\n## Scope\n\n### Dependency Configuration\n\nAdd and configure the required PostgreSQL, Hibernate, and Spring Data JPA dependencies.\n\n### Spring Database Configuration\n\nAdd Spring datasource configuration required for PostgreSQL connectivity during testing.\n\n### Hibernate Configuration\n\nAdd Hibernate/JPA configuration required for database access and entity management.\n\n### Testing Configuration\n\nProvide testing-phase database configuration that allows Spring Boot tests to initialize successfully with PostgreSQL.\n\n### Validation\n\nVerify that the application context starts successfully and database connectivity can be established during testing.\n\n## Out of Scope\n\nThe following items are explicitly excluded:\n\n- Production database provisioning\n- Kubernetes deployment changes\n- Flyway migrations\n- Liquibase migrations\n- Entity implementation beyond what is required for connectivity validation\n- Business domain model implementation\n- Repository layer implementation unrelated to connectivity validation\n- CI/CD pipeline changes\n- Monitoring and observability changes\n- Performance tuning\n- Security hardening of database credentials\n\n## Acceptance Criteria\n\n### AC1 — PostgreSQL Dependencies\n\nRequired PostgreSQL-related dependencies are added and resolved successfully.\n\n### AC2 — Hibernate/JPA Dependencies\n\nRequired Hibernate and Spring Data JPA dependencies are configured successfully.\n\n### AC3 — Spring Datasource Configuration\n\nSpring datasource configuration exists and supports PostgreSQL connectivity during testing.\n\n### AC4 — Hibernate Configuration\n\nHibernate/JPA configuration is present and compatible with PostgreSQL.\n\n### AC5 — Application Startup\n\nSpring Boot application starts successfully with the configured database settings.\n\n### AC6 — Test Context Initialization\n\nSpring testing context initializes successfully using the configured PostgreSQL datasource.\n\n### AC7 — Validation Evidence\n\nValidation evidence demonstrates successful application startup and database connectivity initialization.\n\n## Validation Requirements\n\nThe implementation should provide executable validation demonstrating:\n\n- Dependency resolution succeeds\n- Spring application context starts successfully\n- Hibernate initialization succeeds\n- PostgreSQL datasource initialization succeeds\n- Test context initialization succeeds\n\n## Deliverables\n\nExpected deliverables may include:\n\n- Dependency configuration updates\n- Spring datasource configuration\n- Hibernate/JPA configuration\n- Testing configuration updates\n- Validation evidence\n\nExact file ownership and implementation decomposition will be determined by DevFlow planning.\n\n## Risks\n\n### Configuration Compatibility\n\nDependency version compatibility issues may prevent application startup.\n\n### Environment Configuration\n\nIncorrect datasource configuration may prevent database connectivity.\n\n### Validation Environment\n\nTesting environment availability may affect validation execution.\n\n## Definition of Done\n\nThe ticket is complete when:\n\n- PostgreSQL connectivity configuration is implemented.\n- Hibernate/JPA configuration is implemented.\n- Spring Boot starts successfully with the configured database settings.\n- Testing context initializes successfully.\n- Validation evidence is produced.\n- All generated Work Packages are completed and reconciled.",
+      "id": "auth-247-add-postgresql-database-connectivity-for-testing-phase",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-247"
+      },
+      "name": "Add PostgreSQL Database Connectivity for Testing Phase",
+      "type": "feature"
+    },
+    {
+      "description": "## Scope\n\nAdd Kubernetes manifests for deploying auth-service to a Kubernetes cluster.\n\nThe deployment should run the existing auth-service Docker image and expose the application through a Kubernetes Service.\n\nContainer images should be pulled from GitHub Container Registry (GHCR).\n\n## Context\n\nAUTH-233, AUTH-238, AUTH-247, and AUTH-250 have already been completed and merged to the dev branch.\n\nThe auth-service application can already be built and packaged as a Docker image.\n\nThis ticket introduces the initial Kubernetes deployment manifests required to run the service inside a Kubernetes environment.\n\n## Acceptance Criteria\n\n### Deployment Manifest\n\n- A Kubernetes Deployment manifest exists for auth-service.\n- The Deployment references a Docker image hosted in GitHub Container Registry.\n- The Deployment defines the application container and required runtime configuration.\n- The Deployment is suitable for a non-production environment.\n\n### Service Manifest\n\n- A Kubernetes Service manifest exists for auth-service.\n- The Service exposes the application within the cluster.\n- The Service routes traffic to the auth-service pods.\n\n### Validation\n\n- Kubernetes manifests are syntactically valid.\n- The manifests can be applied to a Kubernetes cluster.\n- The Deployment and Service reference the same application workload.\n\n## Out of Scope\n\n- Ingress configuration\n- Helm charts\n- Horizontal Pod Autoscaling\n- Secrets management\n- ConfigMaps\n- CI/CD pipeline changes\n- Production hardening\n- Monitoring and observability",
+      "id": "auth-251-deploy-auth-service-to-kubernetes",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-251"
+      },
+      "name": "Deploy auth-service to Kubernetes",
+      "type": "feature"
+    },
+    {
+      "description": "## Scope\n\nEstablish the CI pipeline foundation for the auth-service repository to support development environment delivery readiness.\n\nThis task is limited to repository-owned CI build and validation capabilities.\n\n### Allowed Artifacts\n\n- .github/workflows/*\n- Dockerfile\n- .dockerignore\n- pom.xml\n- src/main/resources/application-dev.yml\n- src/main/resources/application.yml\n- src/main/resources/application-*.yml\n\n## Context\n\nThe repository currently lacks a development CI pipeline capable of:\n\n- Building the Spring Boot application\n- Running automated tests\n- Executing code quality validation\n- Building Docker images\n- Providing a reusable CI foundation for future deployment stages\n\nA previous execution identified that GitHub Actions workflow files are required to satisfy the requested capability.\n\nScope Compatibility Analysis detected:\n\nMissing inferred artifacts:\n- .github/workflows/*\n\nThe repository contract must explicitly allow GitHub Actions workflow files before implementation can proceed.\n\nInfrastructure deployment artifacts were also inferred but are not required for this foundation task and should remain outside the scope of AUTH-233.\n\n## Repository\n\nRepository: auth-service\n\nTechnology Stack:\n\n- Java\n- Spring Boot\n- Maven\n- Docker\n- GitHub Actions\n\n## Requirements\n\n### R1. GitHub Actions Workflow Foundation\n\nCreate a GitHub Actions workflow under:\n\n.github/workflows/\n\nThe workflow must:\n\n- Trigger on pull requests\n- Trigger on pushes to the development branch\n- Execute repository validation steps\n\n### R2. Maven Build Validation\n\nThe workflow must:\n\n- Restore dependencies\n- Build the application\n- Execute Maven tests\n- Fail the workflow when build or test execution fails\n\n### R3. Code Quality Validation\n\nIntegrate repository code-quality validation.\n\nThe workflow must support:\n\n- SonarQube or SonarCloud execution\n- Secure token-based configuration\n- Quality gate enforcement when configured\n\n### R4. Docker Image Build Validation\n\nThe workflow must:\n\n- Build the repository Docker image\n- Validate Docker build success\n- Fail when Docker build fails\n\n### R5. Development Pipeline Structure\n\nThe workflow must provide a reusable CI foundation that can later be extended for:\n\n- staging deployment\n- production deployment\n- image publication\n- GitOps deployment\n\nwithout redesigning the workflow architecture.\n\n### R6. Profile Support\n\nDevelopment profile configuration must remain compatible with pipeline execution.\n\nIf required, development profile configuration may be added or updated under:\n\nsrc/main/resources/application-dev.yml\n\n## Acceptance Criteria\n\n### AC1\n\nA GitHub Actions workflow exists under:\n\n.github/workflows/\n\n### AC2\n\nPipeline execution performs:\n\n- Maven build\n- Maven test execution\n\nsuccessfully.\n\n### AC3\n\nPipeline includes code-quality validation support.\n\n### AC4\n\nPipeline builds the repository Docker image successfully.\n\n### AC5\n\nWorkflow fails when:\n\n- build fails\n- tests fail\n- Docker build fails\n\n### AC6\n\nPipeline executes automatically for supported repository events.\n\n### AC7\n\nImplementation remains limited to repository-owned CI artifacts.\n\n### AC8\n\nNo deployment infrastructure artifacts are created.\n\n## Out of Scope\n\nThe following artifacts are intentionally excluded from AUTH-233:\n\napplications/*\nargocd/*\ndeployment.yaml\nhelm/*\nk8s/*\n\nThe following capabilities are also excluded:\n\n- Kubernetes deployment\n- ArgoCD deployment\n- GitOps application manifests\n- Helm charts\n- Production deployment automation\n- Staging deployment automation\n- Container registry publishing\n\nThese should be implemented in a separate infrastructure-scoped task.\n\n## Business Rules\n\n### BR1\n\nAUTH-233 establishes CI foundation only.\n\n### BR2\n\nDeployment infrastructure ownership remains outside this repository.\n\n### BR3\n\nThe task must not introduce Kubernetes, Helm, ArgoCD, or GitOps deployment artifacts.\n\n### BR4\n\nThe workflow must be reusable for future environments without requiring a complete redesign.\n\n## Technical Notes\n\nThe GitHub Actions workflow must be implemented as a single owned artifact.\n\nDo not split .github/workflows/ci.yml into multiple subtasks by workflow stage.\n\nOnly one Work Package may own:\n\n.github/workflows/ci.yml\n\nBuild, test, quality, and Docker build steps must be implemented together inside that same workflow-file Work Package.\n\nSeparate Work Packages are allowed only when they own different files, such as:\n\n- Dockerfile\n- .dockerignore\n- pom.xml\n- src/main/resources/application-dev.yml",
+      "id": "auth-233-dev-environment-delivery-pipeline-foundation",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-233"
+      },
+      "name": "Dev Environment Delivery Pipeline Foundation",
+      "type": "feature"
+    },
+    {
+      "description": "## Background\n\nAUTH-233 established the initial auth-service project and has been completed and merged into the dev branch.\n\nThe repository currently supports local Maven and Docker-based development but does not yet provide a production-ready GitHub Actions CI/CD pipeline.\n\nThe previous GitLab implementation supported:\n\n- Maven build\n- Automated testing\n- Docker image build\n- Container registry publishing\n- Production deployment\n- Flyway migration execution\n\nAn equivalent GitHub-native solution is required.\n\n## Problem\n\nThe auth-service repository currently lacks:\n\n- GitHub Actions build automation\n- Automated test execution\n- GitHub Container Registry publishing\n- Production deployment automation\n- Production migration workflow\n\nThis prevents repeatable and auditable release management using GitHub.\n\n## Goal\n\nImplement a production-ready GitHub Actions CI/CD pipeline for auth-service.\n\nThe solution should support:\n\n- Build validation\n- Automated testing\n- Docker image publication\n- Production deployment workflow\n- Production Flyway migration workflow\n\nwhile remaining compatible with the existing auth-service repository structure.\n\n## Scope\n\nThe implementation may include:\n\n- GitHub Actions workflow definitions\n- Build stage implementation\n- Test stage implementation\n- Docker image build workflow\n- GitHub Container Registry integration\n- Production deployment workflow\n- Production migration workflow\n- CI/CD documentation updates\n- Required GitHub Actions configuration\n\nPlanning and implementation must use the current state of the dev branch as the source of truth.\n\nExisting repository files may be used as planning context.\n\n## Planning Constraints\n\nThe whole .github/workflows/deploy.yml file must be owned by one Work Package only.\n\nDo not split .github/workflows/deploy.yml into separate Docker publish, deployment, and migration Work Packages.\n\nDocker image build, GHCR push, production deployment, and Flyway migration should be grouped into the same deploy workflow Work Package if they are implemented in .github/workflows/deploy.yml.\n\nSubtask validation commands must not require GitHub Actions runtime, Docker daemon, production credentials, or the act CLI unless explicitly available in the repository environment.\n\nDevFlow must decompose this ticket by durable owned artifact, not by CI/CD stage.\n\nGitHub Actions build, test, Docker build, Docker push, production deployment, and production migration may be implemented inside workflow YAML files.\n\nDo not create separate Work Packages for build stage, test stage, Docker stage, push stage, deploy stage, or migration stage if they modify the same workflow file.\n\nNo two Work Packages may own the same workflow file.\n\nExpected ownership boundaries should be grouped around durable artifacts, for example:\n\n- .github/workflows/ci.yml\n- .github/workflows/deploy.yml\n- README.md\n\nA Work Package must own at least one target file, except for a final integration validation Work Package.\n\nAvoid empty ownedTargetFiles unless validationScope is integration.\n\n## Out of Scope\n\n- Business feature development\n- API functionality changes\n- Authentication logic changes\n- Database schema changes unrelated to deployment\n- Blue/Green deployment\n- Canary deployment\n- Multi-service orchestration\n- Infrastructure provisioning outside auth-service deployment requirements\n\n## Acceptance Criteria\n\n- GitHub Actions validates repository build successfully.\n- GitHub Actions executes automated tests.\n- Docker images can be built through GitHub Actions.\n- Docker images can be published to GitHub Container Registry.\n- A production deployment workflow exists.\n- A production migration workflow exists.\n- Required GitHub Secrets are documented.\n- No secrets are committed into source control.\n- The solution remains compatible with the current auth-service repository.\n- The implementation is executable through the repository's GitHub Actions environment.\n\n## Validation\n\nEvidence should demonstrate:\n\n- Successful Maven build execution\n- Successful automated test execution\n- Successful Docker image build\n- Successful image publication to GitHub Container Registry\n- Successful production deployment workflow execution\n- Successful production migration workflow execution\n\nThe validation approach should be determined during planning and implementation.",
+      "id": "auth-238-github-actions-production-ci-cd-pipeline",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-238"
+      },
+      "name": "GitHub Actions Production CI/CD Pipeline",
+      "type": "feature"
+    },
+    {
+      "description": "## Scope\n\nInitialize the auth-service module as a Spring Boot backend service.\n\n## Context\n\nThis is the first test ticket for running the full DevFlow cycle:\n\nJira → DevFlow → GitLab branch → AI planning → code generation → validation → PR\n\n## Repository\n\n## Requirements\n\n- Create a new Spring Boot project for auth-service.\n- Use Maven project metadata:\n  - groupId: com.az.auth\n  - artifactId: auth-service\n  - version: 0.0.1-SNAPSHOT\n  - name: auth-service\n  - basePackage: com.az.auth\n  - Java Version: 21\n- Support runtime environments:\n  - local\n  - dev\n  - staging\n  - prod\n- The project should be buildable and testable locally.\n\n## Acceptance Criteria\n\n- The repository contains a valid Spring Boot project.\n- Maven build succeeds.\n- Basic application startup test exists.\n- Environment profile configuration exists for local, dev, staging, and prod.\n- DevFlow can create a GitLab branch and pull request for this ticket.",
+      "id": "auth-182-initialize-auth-service-project",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-182"
+      },
+      "name": "Initialize Auth Service Project",
+      "type": "feature"
+    },
+    {
+      "description": "## Scope\n\nAdd Docker support for local development of the auth-service module.\n\n## Context\n\nThis is the second ticket to continue testing the full DevFlow cycle for the Spring Boot auth-service module.\n\nThe auth-service module is a Maven project defined by pom.xml.\n\n## Repository\n\n## Requirements\n\n- Add a Dockerfile at the repository root.\n- The Dockerfile must build and start the auth-service module.\n- The Dockerfile must use eclipse-temurin:21-jdk-alpine as the base image.\n- The built image must contain the generated auth-service JAR file.\n- Add .dockerignore if useful for local Docker build performance.\n\n## Acceptance Criteria\n\n- docker build -t auth-service:local . succeeds.\n- The built Docker image contains the auth-service JAR file.\n- docker run --rm auth-service:local starts the container successfully.\n- All generated paths are relative to the repository root.\n- No generated file violates allowed paths, allowed extensions, or forbidden path rules.",
+      "id": "auth-190-local-development-environment-with-docker",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-190"
+      },
+      "name": "Local development environment with Docker",
+      "type": "feature"
+    },
+    {
+      "description": "### Goal\n\nPublish the auth-service Docker image to GitHub Container Registry as part of the CI workflow.\n\n### Context\n\nThe current CI workflow builds the Maven artifact and builds a Docker image, but the image is not pushed to GHCR. Kubernetes deployment requires a published image that can be pulled by the cluster.\n\n### Scope\n\nUpdate the GitHub Actions CI workflow for auth-service Docker image publishing.\n\n### Requirements\n\nThe CI workflow must build and publish the auth-service Docker image to GHCR.\n\nThe workflow must support branch-based image tagging for development and release use cases.\n\nThe workflow must use GitHub Actions permissions and authentication appropriate for publishing packages to GHCR.\n\n### Acceptance Criteria\n\nA Docker image is pushed to GHCR when CI runs on the configured branches.\n\nThe pushed image can be identified by commit SHA.\n\nThe dev branch produces a stable dev image tag.\n\nThe workflow still runs Maven build validation before publishing the image.\n\n### Out of Scope\n\nKubernetes deployment.\n\nKubernetes namespace creation.\n\nRuntime application configuration changes.",
+      "id": "auth-261-publish-auth-service-docker-image-to-ghcr",
+      "metadata": {
+        "confidence": 0.7,
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-261"
+      },
+      "name": "Publish auth-service Docker image to GHCR",
+      "type": "feature"
+    },
+    {
+      "id": "java-package:com.az.auth",
+      "metadata": {
+        "kind": "package",
+        "namespace": "com.az.auth",
+        "packageName": "com.az.auth",
+        "source": "repository-evidence"
+      },
+      "name": "auth",
+      "type": "module"
+    },
+    {
+      "id": "AUTH-263",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-263"
+      },
+      "name": "Add GHCR image pull support for Kubernetes",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-252",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-252"
+      },
+      "name": "Add Ingress with TLS for auth-service",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-262",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-262"
+      },
+      "name": "Add Kubernetes namespace and service account",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-247",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-247"
+      },
+      "name": "Add PostgreSQL Database Connectivity for Testing Phase",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-251",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-251"
+      },
+      "name": "Deploy auth-service to Kubernetes",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-233",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-233"
+      },
+      "name": "Dev Environment Delivery Pipeline Foundation",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-238",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-238"
+      },
+      "name": "GitHub Actions Production CI/CD Pipeline",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-182",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-182"
+      },
+      "name": "Initialize Auth Service Project",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-190",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-190"
+      },
+      "name": "Local development environment with Docker",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-261",
+      "metadata": {
+        "source": "jira-pr-rebuild",
+        "ticketId": "AUTH-261"
+      },
+      "name": "Publish auth-service Docker image to GHCR",
+      "type": "ticket"
+    }
+  ],
+  "summary": {
+    "edgeCount": 30,
+    "edgeTypeCounts": {
+      "implements": 10,
+      "modifies": 20
+    },
+    "errorCount": 0,
+    "findingCount": 0,
+    "infoCount": 0,
+    "nodeCount": 21,
+    "nodeTypeCounts": {
+      "feature": 10,
+      "module": 1,
+      "ticket": 10
+    },
+    "severityCounts": {
+      "error": 0,
+      "info": 0,
+      "warning": 0
+    },
+    "valid": true,
+    "warningCount": 0
+  },
+  "valid": true
+}
