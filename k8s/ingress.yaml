@@ -8,7 +8,6 @@ metadata:
     app.kubernetes.io/part-of: auth
     app.kubernetes.io/component: api
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
