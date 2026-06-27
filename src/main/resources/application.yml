@@ -22,6 +22,15 @@ logging:
     root: INFO
 server:
   port: 8080
+keycloak:
+  server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081}
+  realm: ${KEYCLOAK_REALM:auth-service}
+  client-id: ${KEYCLOAK_CLIENT_ID:auth-service}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET:}
+  admin-client-id: ${KEYCLOAK_ADMIN_CLIENT_ID:auth-service-admin}
+  admin-client-secret: ${KEYCLOAK_ADMIN_CLIENT_SECRET:}
+  admin-username: ${KEYCLOAK_ADMIN_USERNAME:}
+  admin-password: ${KEYCLOAK_ADMIN_PASSWORD:}
 ---
 # Common configuration for all profiles.
 # Use application-<profile>.yml for environment-specific overrides.
