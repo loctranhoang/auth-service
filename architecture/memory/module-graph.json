@@ -3,6 +3,7 @@
   "@type": "ModuleGraph",
   "modules": [
     {
+      "capabilities": [],
       "confidence": 1,
       "directory": "com/az/auth",
       "id": "java-package:com.az.auth",
@@ -13,7 +14,8 @@
       "name": "auth",
       "namespace": "com.az.auth",
       "packageName": "com.az.auth",
-      "status": "detected"
+      "status": "detected",
+      "tags": []
     }
   ],
   "name": "auth-service module graph",
