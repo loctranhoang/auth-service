@@ -35,6 +35,8 @@
         ]
       },
       "name": "Initialize Auth Service Project",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-182"
@@ -73,6 +75,8 @@
         ]
       },
       "name": "Local development environment with Docker",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-190"
@@ -110,6 +114,8 @@
         ]
       },
       "name": "Dev Environment Delivery Pipeline Foundation",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-233"
@@ -148,6 +154,8 @@
         ]
       },
       "name": "GitHub Actions Production CI/CD Pipeline",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-238"
@@ -186,6 +194,8 @@
         ]
       },
       "name": "Add PostgreSQL Database Connectivity for Testing Phase",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-247"
@@ -224,6 +234,8 @@
         ]
       },
       "name": "Deploy auth-service to Kubernetes",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-251"
@@ -262,6 +274,8 @@
         ]
       },
       "name": "Add Ingress with TLS for auth-service",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-252"
@@ -300,6 +314,8 @@
         ]
       },
       "name": "Publish auth-service Docker image to GHCR",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-261"
@@ -338,6 +354,8 @@
         ]
       },
       "name": "Add Kubernetes namespace and service account",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-262"
@@ -376,6 +394,8 @@
         ]
       },
       "name": "Add GHCR image pull support for Kubernetes",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-263"
