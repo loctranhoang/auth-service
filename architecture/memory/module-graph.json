@@ -4,6 +4,22 @@
   "modules": [
     {
       "confidence": 1,
+      "directory": ".",
+      "id": "directory:repository-root",
+      "kind": "directory",
+      "metadata": {
+        "evidenceFiles": [
+          "pom.xml"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "Repository Root",
+      "sourcePath": "pom.xml",
+      "status": "detected"
+    },
+    {
+      "capabilities": [],
+      "confidence": 1,
       "directory": "com/az/auth",
       "id": "java-package:com.az.auth",
       "kind": "package",
@@ -13,10 +29,177 @@
       "name": "auth",
       "namespace": "com.az.auth",
       "packageName": "com.az.auth",
-      "status": "detected"
+      "status": "detected",
+      "tags": []
     }
   ],
   "name": "auth-service module graph",
-  "relationships": [],
+  "relationships": [
+    {
+      "metadata": {
+        "keys": [
+          "active",
+          "admin-client-id",
+          "admin-client-secret",
+          "admin-password",
+          "admin-realm",
+          "admin-username",
+          "allow_jdbc_metadata_access",
+          "application",
+          "auth",
+          "boot",
+          "client-id",
+          "client-secret",
+          "database-platform",
+          "datasource",
+          "ddl-auto",
+          "driver-class-name",
+          "hibernate",
+          "jpa",
+          "keycloak",
+          "level",
+          "logging",
+          "name",
+          "password",
+          "port",
+          "profiles",
+          "properties",
+          "realm",
+          "root",
+          "server",
+          "server-url",
+          "show-sql",
+          "spring",
+          "url",
+          "username"
+        ],
+        "sourcePath": "src/main/resources/application.yml"
+      },
+      "source": "directory:repository-root",
+      "target": "configuration:src/main/resources/application.yml",
+      "type": "configures"
+    },
+    {
+      "metadata": {
+        "name": "org.hibernate.orm:hibernate-core",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.hibernate.orm:hibernate-core",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.keycloak:keycloak-admin-client",
+        "sourcePath": "pom.xml",
+        "version": "${keycloak.version}"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.keycloak:keycloak-admin-client",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.postgresql:postgresql",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.postgresql:postgresql",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.springframework.boot:spring-boot-starter-data-jpa",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.springframework.boot:spring-boot-starter-data-jpa",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.springframework.boot:spring-boot-starter-test",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.springframework.boot:spring-boot-starter-test",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.springframework.boot:spring-boot-starter-validation",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.springframework.boot:spring-boot-starter-validation",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "name": "org.springframework.boot:spring-boot-starter-web",
+        "sourcePath": "pom.xml"
+      },
+      "source": "directory:repository-root",
+      "target": "dependency:org.springframework.boot:spring-boot-starter-web",
+      "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "confidence": 1,
+        "id": "ANY /api/auth",
+        "metadata": {
+          "source": "post-execution-memory-update-proposal"
+        },
+        "method": "ANY",
+        "moduleId": "java-package:com.az.auth",
+        "moduleName": "Auth",
+        "normalizedPath": "/api/auth",
+        "path": "/api/auth",
+        "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+        "status": "detected"
+      },
+      "source": "java-package:com.az.auth",
+      "target": "ANY /api/auth",
+      "type": "exposes"
+    },
+    {
+      "metadata": {
+        "confidence": 1,
+        "id": "POST /api/auth/login",
+        "metadata": {
+          "source": "post-execution-memory-update-proposal"
+        },
+        "method": "POST",
+        "moduleId": "java-package:com.az.auth",
+        "moduleName": "Auth",
+        "normalizedPath": "/api/auth/login",
+        "path": "/api/auth/login",
+        "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+        "status": "detected"
+      },
+      "source": "java-package:com.az.auth",
+      "target": "POST /api/auth/login",
+      "type": "exposes"
+    },
+    {
+      "metadata": {
+        "confidence": 1,
+        "id": "POST /api/auth/register",
+        "metadata": {
+          "source": "post-execution-memory-update-proposal"
+        },
+        "method": "POST",
+        "moduleId": "java-package:com.az.auth",
+        "moduleName": "Auth",
+        "normalizedPath": "/api/auth/register",
+        "path": "/api/auth/register",
+        "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+        "status": "detected"
+      },
+      "source": "java-package:com.az.auth",
+      "target": "POST /api/auth/register",
+      "type": "exposes"
+    }
+  ],
   "serviceId": "auth-service"
 }
