@@ -35,6 +35,8 @@
         ]
       },
       "name": "Initialize Auth Service Project",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-182"
@@ -73,6 +75,8 @@
         ]
       },
       "name": "Local development environment with Docker",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-190"
@@ -110,6 +114,8 @@
         ]
       },
       "name": "Dev Environment Delivery Pipeline Foundation",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-233"
@@ -148,6 +154,8 @@
         ]
       },
       "name": "GitHub Actions Production CI/CD Pipeline",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-238"
@@ -186,6 +194,8 @@
         ]
       },
       "name": "Add PostgreSQL Database Connectivity for Testing Phase",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-247"
@@ -224,6 +234,8 @@
         ]
       },
       "name": "Deploy auth-service to Kubernetes",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-251"
@@ -262,6 +274,8 @@
         ]
       },
       "name": "Add Ingress with TLS for auth-service",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-252"
@@ -300,6 +314,8 @@
         ]
       },
       "name": "Publish auth-service Docker image to GHCR",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-261"
@@ -338,6 +354,8 @@
         ]
       },
       "name": "Add Kubernetes namespace and service account",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-262"
@@ -376,9 +394,74 @@
         ]
       },
       "name": "Add GHCR image pull support for Kubernetes",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "source": "jira-pr-rebuild",
       "status": "done",
       "ticketId": "AUTH-263"
+    },
+    {
+      "category": "auth",
+      "confidence": 1,
+      "description": "# Goal\n\nIntroduce an authentication API that integrates with Keycloak to support user registration and user authentication.\n\nThe service will act as the application's authentication gateway by exposing REST endpoints while delegating identity management and credential validation to Keycloak.\n\n# Background\n\nThe Auth Service currently provides the application foundation, deployment pipeline, Kubernetes deployment, ingress, and runtime infrastructure.\n\nThe next capability is to expose authentication APIs backed by Keycloak so client applications can:\n\n- register new users\n- authenticate existing users\n- receive authentication tokens issued by Keycloak\n\nThis feature establishes the initial integration between the Auth Service and the external identity provider.\n\n# Scope\n\nImplement an authentication module that includes:\n\n- REST endpoints for user registration and login\n- service layer responsible for communicating with Keycloak\n- request/response DTOs required by the API\n- Keycloak integration for:\n  - creating users\n  - authenticating users\n  - obtaining access tokens\n- configuration required for Keycloak connectivity\n- dependency updates required for Keycloak integration\n\nThe implementation should follow the existing project architecture and dependency injection conventions.\n\n# Architecture Notes\n\nIntroduce an Authentication capability composed of:\n\nREST API\n\n↓\n\nAuthentication Controller\n\n↓\n\nAuthentication Services\n\n↓\n\nKeycloak Integration\n\n↓\n\nKeycloak Server\n\nResponsibilities should remain clearly separated.\n\nThe controller should only expose the HTTP API.\n\nBusiness logic should remain within the service layer.\n\nCommunication with Keycloak should be encapsulated inside dedicated integration services rather than spreading HTTP or Admin API calls throughout the application.\n\nConfiguration values should be externalized using the existing Spring Boot configuration mechanism.\n\nThe design should support future authentication features such as:\n\n- refresh token\n- logout\n- password reset\n- role management\n- profile management\n\nwithout requiring major architectural changes.\n\n# Functional Requirements\n\nSupport user registration.\n\nSupport user login.\n\nAuthentication responses should return the token information produced by Keycloak.\n\nUser creation should be delegated to Keycloak.\n\nAuthentication should be delegated to Keycloak.\n\nThe Auth Service should not implement its own credential store.\n\n# Configuration\n\nIntroduce any required application configuration for Keycloak connectivity, including values such as:\n\n- Keycloak server URL\n- realm\n- client information\n- authentication credentials\n\nConfiguration should remain environment-specific and compatible with the existing deployment model.\n\n# Out of Scope\n\nThis ticket must not implement:\n\n- authorization rules\n- JWT validation filters\n- refresh token endpoints\n- logout endpoints\n- role administration\n- user profile management\n- password recovery\n- email verification\n- social login\n- MFA\n\nThese capabilities will be implemented in future tickets.\n\n# Acceptance Criteria\n\n- Registration endpoint is available.\n- Login endpoint is available.\n- Registration creates users in Keycloak.\n- Login authenticates against Keycloak.\n- Successful authentication returns the Keycloak-issued token payload.\n- Required Keycloak configuration is externalized.\n- Required project dependencies are added.\n- The implementation follows the project's controller/service layering.\n- Runtime validation demonstrates successful communication with a running Keycloak instance.\n\n# Validation\n\nVerify:\n\n- project builds successfully\n- application starts successfully\n- registration creates a user in Keycloak\n- login returns a valid token from Keycloak\n- invalid credentials return an appropriate error\n- configuration can be supplied through Spring Boot configuration without code changes\n\n# Technical Notes\n\nPrefer using the official Keycloak integration libraries where appropriate instead of implementing custom protocol logic when an official client is available.\n\nKeep Keycloak-specific implementation details isolated behind service boundaries so future identity provider changes remain localized.\n\nThis feature should become the foundation for future authentication and authorization capabilities.",
+      "evidence": {
+        "evidence": [
+          {
+            "filePath": "pom.xml",
+            "id": "changed-file-pom-xml",
+            "kind": "manifest",
+            "source": "scanner",
+            "summary": "Changed manifest evidence: pom.xml."
+          },
+          {
+            "filePath": "src/main/java/com/az/auth/AuthController.java",
+            "id": "changed-file-src-main-java-com-az-auth-authcontroller-java",
+            "kind": "source-code",
+            "source": "scanner",
+            "summary": "Changed source-code evidence: src/main/java/com/az/auth/AuthController.java."
+          },
+          {
+            "filePath": "src/main/java/com/az/auth/AuthService.java",
+            "id": "changed-file-src-main-java-com-az-auth-authservice-java",
+            "kind": "source-code",
+            "source": "scanner",
+            "summary": "Changed source-code evidence: src/main/java/com/az/auth/AuthService.java."
+          },
+          {
+            "filePath": "src/main/resources/application.yml",
+            "id": "changed-file-src-main-resources-application-yml",
+            "kind": "configuration",
+            "source": "scanner",
+            "summary": "Changed configuration evidence: src/main/resources/application.yml."
+          },
+          {
+            "id": "ticket-auth-272",
+            "kind": "ticket",
+            "source": "scanner",
+            "summary": "Completed ticket evidence: AUTH-272.",
+            "ticketId": "AUTH-272"
+          }
+        ],
+        "ticketId": "AUTH-272"
+      },
+      "featureId": "user-registration-login",
+      "id": "user-registration-login",
+      "metadata": {
+        "capabilityIds": [
+          "auth",
+          "user-login",
+          "user-registration"
+        ],
+        "moduleIds": [
+          "directory:repository-root",
+          "java-package:com.az.auth"
+        ],
+        "source": "post-execution-memory-update-proposal",
+        "ticketId": "AUTH-272"
+      },
+      "name": "User Registration & Login",
+      "status": "done",
+      "title": "User Registration & Login"
     }
   ],
   "name": "auth-service completed features",

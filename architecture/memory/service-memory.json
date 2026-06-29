@@ -1,8 +1,85 @@
 {
   "@context": "https://devflow.dev/architecture/service-memory/v1",
   "@type": "ServiceMemory",
-  "capabilities": [],
+  "capabilities": [
+    {
+      "id": "auth",
+      "metadata": {
+        "moduleIds": [
+          "java-package:com.az.auth"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "auth"
+    },
+    {
+      "id": "user-login",
+      "metadata": {
+        "moduleIds": [
+          "directory:repository-root",
+          "java-package:com.az.auth"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "user login"
+    },
+    {
+      "id": "user-registration",
+      "metadata": {
+        "moduleIds": [
+          "directory:repository-root",
+          "java-package:com.az.auth"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "user registration"
+    }
+  ],
   "dependencies": [],
+  "endpoints": [
+    {
+      "confidence": 1,
+      "id": "ANY /auth",
+      "metadata": {
+        "source": "post-execution-memory-update-proposal"
+      },
+      "method": "ANY",
+      "moduleId": "java-package:com.az.auth",
+      "moduleName": "Auth",
+      "normalizedPath": "/auth",
+      "path": "/auth",
+      "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+      "status": "detected"
+    },
+    {
+      "confidence": 1,
+      "id": "POST /auth/login",
+      "metadata": {
+        "source": "post-execution-memory-update-proposal"
+      },
+      "method": "POST",
+      "moduleId": "java-package:com.az.auth",
+      "moduleName": "Auth",
+      "normalizedPath": "/auth/login",
+      "path": "/auth/login",
+      "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+      "status": "detected"
+    },
+    {
+      "confidence": 1,
+      "id": "POST /auth/register",
+      "metadata": {
+        "source": "post-execution-memory-update-proposal"
+      },
+      "method": "POST",
+      "moduleId": "java-package:com.az.auth",
+      "moduleName": "Auth",
+      "normalizedPath": "/auth/register",
+      "path": "/auth/register",
+      "sourcePath": "src/main/java/com/az/auth/AuthController.java",
+      "status": "detected"
+    }
+  ],
   "name": "auth-service",
   "repository": {
     "branch": "dev",

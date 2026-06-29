@@ -249,6 +249,31 @@
       "target": "java-package:com.az.auth",
       "toId": "java-package:com.az.auth",
       "type": "modifies"
+    },
+    {
+      "fromId": "user-registration-login",
+      "toId": "auth",
+      "type": "provides"
+    },
+    {
+      "fromId": "user-registration-login",
+      "toId": "directory:repository-root",
+      "type": "implemented_by"
+    },
+    {
+      "fromId": "user-registration-login",
+      "toId": "java-package:com.az.auth",
+      "type": "implemented_by"
+    },
+    {
+      "fromId": "user-registration-login",
+      "toId": "user-login",
+      "type": "provides"
+    },
+    {
+      "fromId": "user-registration-login",
+      "toId": "user-registration",
+      "type": "provides"
     }
   ],
   "findings": [],
@@ -257,6 +282,21 @@
     "repository": "auth-service"
   },
   "nodes": [
+    {
+      "id": "auth",
+      "name": "auth",
+      "type": "capability"
+    },
+    {
+      "id": "user-login",
+      "name": "user login",
+      "type": "capability"
+    },
+    {
+      "id": "user-registration",
+      "name": "user registration",
+      "type": "capability"
+    },
     {
       "description": "### Goal\n\nEnable Kubernetes to pull auth-service images from GHCR.\n\n### Context\n\nThe auth-service Docker image will be published to GHCR. Kubernetes must be configured to authenticate when pulling the image, especially if the package is private.\n\n### Scope\n\nUpdate Kubernetes manifests and documentation to support GHCR image pull authentication.\n\n### Requirements\n\nauth-service Kubernetes configuration must support an image pull secret.\n\nThe service account must reference the image pull secret.\n\nDocumentation must explain how the image pull secret should be created for GHCR.\n\nNo real credentials or tokens may be committed.\n\n### Acceptance Criteria\n\nThe service account references an image pull secret.\n\nDocumentation describes the required GHCR pull-secret setup.\n\nNo secret values are committed to the repository.\n\nKubernetes manifests remain valid for dry-run validation.\n\n### Out of Scope\n\nCreating real GitHub tokens.\n\nCommitting Kubernetes Secret credentials.\n\nChanging the CI image publishing workflow.",
       "id": "auth-263-add-ghcr-image-pull-support-for-kubernetes",
@@ -368,6 +408,15 @@
       "type": "feature"
     },
     {
+      "id": "user-registration-login",
+      "metadata": {
+        "ticketId": "AUTH-272"
+      },
+      "name": "User Registration & Login",
+      "sourcePath": "pom.xml",
+      "type": "feature"
+    },
+    {
       "id": "java-package:com.az.auth",
       "metadata": {
         "kind": "package",
@@ -376,6 +425,12 @@
         "source": "repository-evidence"
       },
       "name": "auth",
+      "type": "module"
+    },
+    {
+      "id": "directory:repository-root",
+      "name": "Repository Root",
+      "sourcePath": "pom.xml",
       "type": "module"
     },
     {
@@ -470,18 +525,21 @@
     }
   ],
   "summary": {
-    "edgeCount": 30,
+    "edgeCount": 35,
     "edgeTypeCounts": {
+      "implemented_by": 2,
       "implements": 10,
-      "modifies": 20
+      "modifies": 20,
+      "provides": 3
     },
     "errorCount": 0,
     "findingCount": 0,
     "infoCount": 0,
-    "nodeCount": 21,
+    "nodeCount": 26,
     "nodeTypeCounts": {
-      "feature": 10,
-      "module": 1,
+      "capability": 3,
+      "feature": 11,
+      "module": 2,
       "ticket": 10
     },
     "severityCounts": {
