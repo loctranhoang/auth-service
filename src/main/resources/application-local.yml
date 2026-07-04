@@ -17,7 +17,7 @@ spring:
         boot:
           allow_jdbc_metadata_access: false
 server:
-  port: 8080
+  port: ${SERVER_PORT:8081}
 logging:
   level:
     org.springframework: DEBUG
