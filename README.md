@@ -51,6 +51,31 @@ java -jar target/auth-service-*.jar
 
 By default, the service will be available at `http://localhost:8080`.
 
+### Local Platform-Infra Environment
+
+Use `.env.example` as the safe local template for running Auth Service against the local Platform-Infra PostgreSQL and Keycloak services. The example uses the `local` Spring profile, points the database URL at the Platform-Infra PostgreSQL host port, and points Keycloak at `http://localhost:8080` with realm `az`.
+
+Copy the example and replace each `PLACEHOLDER_*` value with local-only credentials or secrets:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Keep `.env` uncommitted. Export the variables from `.env` in your shell or IDE before starting the service. For PowerShell:
+
+```powershell
+Get-Content .env |
+  Where-Object { $_ -and $_ -notmatch '^\s*#' } |
+  ForEach-Object {
+    $name, $value = $_ -split '=', 2
+    Set-Item -Path "Env:$name" -Value $value
+  }
+
+mvn spring-boot:run
+```
+
+The example sets `SERVER_PORT=8081` so the service can run locally while Platform-Infra Keycloak uses `http://localhost:8080`.
+
 ## Usage Example
 
 Typical authentication request (example endpoint):
