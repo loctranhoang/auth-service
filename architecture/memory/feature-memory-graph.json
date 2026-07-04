@@ -1,6 +1,16 @@
 {
   "edges": [
     {
+      "fromId": "add-auth-service-local-environment-example",
+      "toId": "auth-service-local-environment-example",
+      "type": "provides"
+    },
+    {
+      "fromId": "add-auth-service-local-environment-example",
+      "toId": "directory:src/main/resources",
+      "type": "implemented_by"
+    },
+    {
       "confidence": 0.7,
       "fromId": "AUTH-182",
       "source": "AUTH-182",
@@ -288,6 +298,11 @@
       "type": "capability"
     },
     {
+      "id": "auth-service-local-environment-example",
+      "name": "auth-service local environment example",
+      "type": "capability"
+    },
+    {
       "id": "user-login",
       "name": "user login",
       "type": "capability"
@@ -296,6 +311,15 @@
       "id": "user-registration",
       "name": "user registration",
       "type": "capability"
+    },
+    {
+      "id": "add-auth-service-local-environment-example",
+      "metadata": {
+        "ticketId": "AUTH-282"
+      },
+      "name": "Add Auth-Service Local Environment Example",
+      "sourcePath": ".env.example",
+      "type": "feature"
     },
     {
       "description": "### Goal\n\nEnable Kubernetes to pull auth-service images from GHCR.\n\n### Context\n\nThe auth-service Docker image will be published to GHCR. Kubernetes must be configured to authenticate when pulling the image, especially if the package is private.\n\n### Scope\n\nUpdate Kubernetes manifests and documentation to support GHCR image pull authentication.\n\n### Requirements\n\nauth-service Kubernetes configuration must support an image pull secret.\n\nThe service account must reference the image pull secret.\n\nDocumentation must explain how the image pull secret should be created for GHCR.\n\nNo real credentials or tokens may be committed.\n\n### Acceptance Criteria\n\nThe service account references an image pull secret.\n\nDocumentation describes the required GHCR pull-secret setup.\n\nNo secret values are committed to the repository.\n\nKubernetes manifests remain valid for dry-run validation.\n\n### Out of Scope\n\nCreating real GitHub tokens.\n\nCommitting Kubernetes Secret credentials.\n\nChanging the CI image publishing workflow.",
@@ -434,6 +458,12 @@
       "type": "module"
     },
     {
+      "id": "directory:src/main/resources",
+      "name": "Resources",
+      "sourcePath": "src/main/resources/application-local.yml",
+      "type": "module"
+    },
+    {
       "id": "AUTH-263",
       "metadata": {
         "source": "jira-pr-rebuild",
@@ -467,6 +497,14 @@
         "ticketId": "AUTH-247"
       },
       "name": "Add PostgreSQL Database Connectivity for Testing Phase",
+      "type": "ticket"
+    },
+    {
+      "id": "AUTH-282",
+      "metadata": {
+        "ticketId": "AUTH-282"
+      },
+      "name": "AUTH-282",
       "type": "ticket"
     },
     {
@@ -525,22 +563,22 @@
     }
   ],
   "summary": {
-    "edgeCount": 35,
+    "edgeCount": 37,
     "edgeTypeCounts": {
-      "implemented_by": 2,
+      "implemented_by": 3,
       "implements": 10,
       "modifies": 20,
-      "provides": 3
+      "provides": 4
     },
     "errorCount": 0,
     "findingCount": 0,
     "infoCount": 0,
-    "nodeCount": 26,
+    "nodeCount": 30,
     "nodeTypeCounts": {
-      "capability": 3,
-      "feature": 11,
-      "module": 2,
-      "ticket": 10
+      "capability": 4,
+      "feature": 12,
+      "module": 3,
+      "ticket": 11
     },
     "severityCounts": {
       "error": 0,

@@ -3,6 +3,45 @@
   "@type": "DoneFeatureRegistry",
   "features": [
     {
+      "category": "auth-service-local-environment-example",
+      "confidence": 1,
+      "description": "## Goal\n\nProvide a reusable local environment template for Auth-Service so developers can run the service against the local Platform-Infra PostgreSQL and Keycloak dependencies.\n\nThe repository should include a safe example environment file that aligns Auth-Service runtime configuration with the Platform-Infra local development stack.\n\n## Scope\n\nThis work should:\n\n- introduce an Auth-Service local environment example file\n- include database environment variables required by the existing Spring configuration\n- include Keycloak environment variables required by the existing Auth-Service configuration\n- align local database settings with Platform-Infra PostgreSQL\n- align local identity settings with Platform-Infra Keycloak\n- use placeholders for secrets and credentials\n- avoid committing real local credentials\n- document how to copy the example for local use if repository conventions support it\n\n## Out of Scope\n\nThis work does not include:\n\n- committing a real .env file\n- changing production configuration\n- changing Kubernetes configuration\n- changing CI/CD configuration\n- provisioning Keycloak realms or clients\n- implementing authentication logic\n- modifying Platform-Infra\n\n## Acceptance Criteria\n\n- An Auth-Service local environment example is available.\n- The example includes AUTH_DB_URL, AUTH_DB_USERNAME, and AUTH_DB_PASSWORD.\n- The example includes Auth-Service Keycloak variables.\n- Values are compatible with the local Platform-Infra stack.\n- Secret values use placeholders only.\n- Existing Spring configuration remains compatible.\n- No real credentials are committed.\n\n## Validation\n\nValidate that:\n\n- the environment example is syntactically valid\n- all variables referenced by the current Auth-Service configuration are represented where needed\n- local database and Keycloak defaults align with Platform-Infra local endpoints\n- no real secrets are committed\n\nRuntime validation may be limited if the Keycloak realm/client does not exist yet.\n\n## Technical Notes\n\n- Prefer a committed example file such as .env.example or environments/auth-service.local.env.example, depending on repository conventions.\n- Expected local DB URL should point to Platform-Infra PostgreSQL host port, for example jdbc:postgresql://localhost:<platform-postgres-port>/platform.\n- Expected local Keycloak server URL should point to Platform-Infra Keycloak, for example http://localhost:8080.\n- Use realm az if the local Platform-Infra realm bootstrap ticket owns that realm.\n- Keep real .env files ignored.",
+      "evidence": {
+        "evidence": [
+          {
+            "filePath": "src/main/resources/application-local.yml",
+            "id": "changed-file-src-main-resources-application-local-yml",
+            "kind": "configuration",
+            "source": "scanner",
+            "summary": "Changed configuration evidence: src/main/resources/application-local.yml."
+          },
+          {
+            "id": "ticket-auth-282",
+            "kind": "ticket",
+            "source": "scanner",
+            "summary": "Completed ticket evidence: AUTH-282.",
+            "ticketId": "AUTH-282"
+          }
+        ],
+        "ticketId": "AUTH-282"
+      },
+      "featureId": "add-auth-service-local-environment-example",
+      "id": "add-auth-service-local-environment-example",
+      "metadata": {
+        "capabilityIds": [
+          "auth-service-local-environment-example"
+        ],
+        "moduleIds": [
+          "directory:src/main/resources"
+        ],
+        "source": "post-execution-memory-update-proposal",
+        "ticketId": "AUTH-282"
+      },
+      "name": "Add Auth-Service Local Environment Example",
+      "status": "done",
+      "title": "Add Auth-Service Local Environment Example"
+    },
+    {
       "completedAt": "2026-05-27T07:39:03+07:00",
       "completion": {
         "evidence": {
@@ -460,6 +499,8 @@
         "ticketId": "AUTH-272"
       },
       "name": "User Registration & Login",
+      "relatedCapabilities": [],
+      "relatedDecisions": [],
       "status": "done",
       "title": "User Registration & Login"
     }

@@ -1,2 +1,6 @@
 /.devflow/
 /target/
+
+.env
+.env.*
+!.env.example
