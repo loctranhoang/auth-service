@@ -13,6 +13,16 @@
       "name": "auth"
     },
     {
+      "id": "auth-service-local-environment-example",
+      "metadata": {
+        "moduleIds": [
+          "directory:src/main/resources"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "auth-service local environment example"
+    },
+    {
       "id": "user-login",
       "metadata": {
         "moduleIds": [

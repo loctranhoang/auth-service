@@ -3,6 +3,7 @@
   "@type": "ModuleGraph",
   "modules": [
     {
+      "capabilities": [],
       "confidence": 1,
       "directory": ".",
       "id": "directory:repository-root",
@@ -15,6 +16,22 @@
       },
       "name": "Repository Root",
       "sourcePath": "pom.xml",
+      "status": "detected",
+      "tags": []
+    },
+    {
+      "confidence": 1,
+      "directory": "src/main/resources",
+      "id": "directory:src/main/resources",
+      "kind": "directory",
+      "metadata": {
+        "evidenceFiles": [
+          "src/main/resources/application-local.yml"
+        ],
+        "source": "post-execution-memory-update-proposal"
+      },
+      "name": "Resources",
+      "sourcePath": "src/main/resources/application-local.yml",
       "status": "detected"
     },
     {
@@ -142,6 +159,50 @@
       "source": "directory:repository-root",
       "target": "dependency:org.springframework.boot:spring-boot-starter-web",
       "type": "depends_on"
+    },
+    {
+      "metadata": {
+        "keys": [
+          "activate",
+          "admin-client-id",
+          "admin-client-secret",
+          "admin-password",
+          "admin-realm",
+          "admin-username",
+          "allow_jdbc_metadata_access",
+          "auth",
+          "boot",
+          "client-id",
+          "client-secret",
+          "com.az.auth",
+          "config",
+          "database-platform",
+          "datasource",
+          "ddl-auto",
+          "driver-class-name",
+          "hibernate",
+          "jpa",
+          "keycloak",
+          "level",
+          "logging",
+          "on-profile",
+          "org.springframework",
+          "password",
+          "port",
+          "properties",
+          "realm",
+          "server",
+          "server-url",
+          "show-sql",
+          "spring",
+          "url",
+          "username"
+        ],
+        "sourcePath": "src/main/resources/application-local.yml"
+      },
+      "source": "directory:src/main/resources",
+      "target": "configuration:src/main/resources/application-local.yml",
+      "type": "configures"
     },
     {
       "metadata": {
